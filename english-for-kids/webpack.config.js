@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, options) => {
   const isProduction = options.mode === 'production';
@@ -14,7 +14,7 @@ module.exports = (env, options) => {
     entry: ['./src/app.js', './src/style.scss'],
     output: {
       path: path.join(__dirname, '/dist/'),
-      filename: 'bundle.js'
+      filename: 'bundle.js',
     },
 
     module: {
@@ -25,24 +25,26 @@ module.exports = (env, options) => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env']
-            }
-          }
+              presets: ['@babel/preset-env'],
+            },
+          },
         },
         {
           test: /\.scss$/,
           use: [
-            MiniCssExtractPlugin.loader, 'css-loader',{
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+            {
               loader: 'postcss-loader', // Run postcss actions
               options: {
-                plugins: function () { // postcss plugins, can be exported to postcss.config.js
+                plugins () { // postcss plugins, can be exported to postcss.config.js
                   return [
                     require('autoprefixer')
                   ];
                 }
-              }
-            }, 'sass-loader'  
-          ]
+            },
+            'sass-loader',
+          ],
         },
         {
           test: /\.(png|jpe?g|gif|mp3)$/i,
@@ -56,25 +58,25 @@ module.exports = (env, options) => {
           test: /\.html$/i,
           loader: 'html-loader',
         },
-      ]
+      ],
     },
     devServer: {
-      inline:true,
-      port: 3000
+      inline: true,
+      port: 3000,
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: 'src/index.html'
+        template: 'src/index.html',
       }),
       new MiniCssExtractPlugin({
-        filename: 'bundle.css'
+        filename: 'bundle.css',
       }),
       new CopyPlugin([
         { from: './src/assets/img', to: 'img' },
         { from: './src/assets/audio', to: 'audio' },
       ]),
-    ]
-  }
+    ],
+  };
 
-  return config
-}
+  return config;
+};
