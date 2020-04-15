@@ -1,12 +1,19 @@
-import Helper from "./helpers"
+import Helper from './helpers';
 
 export default class Component {
-    static createElement (tag, id,  ...classList) {
-      this.element = Helper.createElement(tag, id, ...classList)
-    }
+  constructor(tag, id, ...classList) {
+    this.element = Helper.createElement(tag, id, ...classList);
+  }
 
-    append(...chaildComponent) {
-        this.element.append(...chaildComponent.map((c) => c.element))
-    }
+  append(...childComponent) {
+    this.element.append(...childComponent.map((c) => c.element));
+  }
+
+  setAttribute(name, value) {
+    this.element.setAttribute(name, value);
+  }
+
+  setTextContent(text) {
+    this.element.textContent = text;
+  }
 }
-

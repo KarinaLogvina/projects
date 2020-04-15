@@ -1,0 +1,47 @@
+$menu-background: #cecdd8;
+$menu-links: #e8edf0;
+
+body {
+  margin-top: 10%;
+}
+.card__face {
+  width: 16em;
+  margin: 0.2rem 0.2rem;
+}
+
+.container-fluid {
+  display: flex;
+}
+
+.menu-content { 
+  width: 20em;
+}
+
+.row {
+  align-items: center;
+}
+
+.navbar-toggler {
+  margin-top: 1%;
+  margin-left: 1%;
+}
+
+.h-5 {
+  height: 100%;
+}
+
+.rotate {
+  transform: rotateY(380deg);
+}
+
+.h-0 {
+  height: 0;
+}
+
+.trans-05 {
+  transition: 0.5s;
+}
+
+.active {
+  text-decoration-color: $menu-links;
+}
