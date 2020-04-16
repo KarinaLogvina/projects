@@ -16,4 +16,8 @@ export default class Component {
   setTextContent(text) {
     this.element.textContent = text;
   }
+
+  addEventListener(type, handler, params) {
+    this.element.addEventListener(type, handler, params);
+  }
 }

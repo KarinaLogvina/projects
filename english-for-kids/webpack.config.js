@@ -42,6 +42,7 @@ module.exports = (env, options) => {
                     require('autoprefixer')
                   ];
                 }
+              }
             },
             'sass-loader',
           ],

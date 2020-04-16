@@ -31,7 +31,7 @@ body {
 }
 
 .rotate {
-  transform: rotateY(380deg);
+  transform: rotateY(360deg);
 }
 
 .h-0 {
@@ -40,6 +40,10 @@ body {
 
 .trans-05 {
   transition: 0.5s;
+}
+
+.trans-1 {
+  transition: 1s;
 }
 
 .active {

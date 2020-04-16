@@ -19,12 +19,11 @@ export default class Card extends Component {
     );
     const { word, translation, image, audioSrc } = object;
     this.cardImage = new CardImage(image);
-    this.cardTitle = new CardTitle(word);
+    this.cardTitle = new CardTitle(word, translation);
     this.cardSound = new Audio(audioSrc);
-    this.translation = translation;
     this.append(this.cardImage, this.cardTitle);
-    this.element.addEventListener('click', () => this.getSound());
-    this.element.addEventListener('click', () => this.toggleCard());
+    this.addEventListener('click', () => this.getSound());
+    this.addEventListener('click', () => this.toggleCard());
   }
 
   getSound() {
@@ -32,16 +31,34 @@ export default class Card extends Component {
   }
 
   toggleCard() {
-    this.element.classList.toggle('rotate');
-    this.element.classList.toggle('trans-05');
-    this.cardTitle.element.textContent = this.translation;
+    this.element.classList.add('rotate');
+    this.element.classList.add('trans-1');
+    this.addEventListener('transitionend', () => {
+      this.element.classList.remove('rotate');
+      this.element.classList.remove('trans-1');
+      this.cardTitle.swapTitle();
+    }, {once: true});
+
+    this.addEventListener('mouseleave', () => this.mouseleaveCard(), {once: true})
+  }
+
+  mouseleaveCard() {
+    this.element.classList.add('rotate');
+    this.element.classList.add('trans-1');
+    this.addEventListener('transitionend', () => {
+      this.element.classList.remove('rotate');
+      this.element.classList.remove('trans-1');
+      this.cardTitle.swapTitle();
+    }, {once: true});
+
   }
 
   replaceInformation(information) {
     const { word, translation, image, audioSrc } = information;
     this.cardImage.setAttribute('src', image);
     this.cardTitle.element.textContent = word;
-    this.translation = translation;
+    this.cardTitle.translation = translation;
+    this.cardTitle.word = word;
     this.cardSound.setAttribute('src', audioSrc);
   }
 }

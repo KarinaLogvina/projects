@@ -30,7 +30,7 @@ class App {
     this.row.append(...this.cards);
     this.button.element.addEventListener('click', () => this.navigation.toggle());
 
-    this.navigation.element.addEventListener('click', (event) => {
+    this.navigation.addEventListener('click', (event) => {
       const { target } = event;
       if (target.classList.contains('nav-item') && !target.classList.contains('badge-warning')) {
         const currentCategory = getCards(event.target.textContent);
@@ -42,6 +42,7 @@ class App {
         });
       }
     });
+
     document.body.append(this.container.element);
     document.querySelector('.nav-item:first-child').classList.add('badge-warning');
   }
