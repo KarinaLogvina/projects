@@ -79,7 +79,7 @@ label {
   height: 30px; 
   border-radius: 50%;
   box-shadow: 1px 0px 6px -2px #000, 0px 1px 0.6px 0px rgba(255,255,255,0.4) inset;
-  background: -webkit-radial-gradient(center, ellipse cover, rgba(146,175,55,1) 0%, rgba(146,178,55,1) 24%, rgba(157,187,64,1) 55%, rgba(166,194,78,1) 100%);
+  background: -webkit-radial-gradient(center, ellipse cover, rgb(10, 113, 145) 0%, rgb(10, 113, 145) 24%, rgb(10, 113, 145) 55%, rgb(10, 113, 145) 100%);
   transition: all 300ms ease;
 }
 #switch:checked + label { /*When checkbox is checked.. style the next label*/
@@ -101,7 +101,7 @@ span.game {
   position: relative;
   bottom: 10px;
 	text-transform: uppercase;
-	font-size: 10px;
+	font-size: 0.7rem;
 	font-weight: bold;
 	color: #999;
 	text-shadow: 0 1px 1px rgba(255,255,255,0.5), 0 -1px 1px rgba(0,0,0,0.1);
@@ -109,14 +109,11 @@ span.game {
 }
 
 span.on {
-  left: -150px;  
-}
-span.off {
-  left: -25px;
+  left: -190px;  
 }
 
 #switch:checked ~ span.off {
-  text-shadow: 0px 0px 8px #f66f6f, 0px 0px 8px #f66f6f;
+  text-shadow: 0px 0px 8px #2cad21, 0px 0px 8px #2cad21;
 }
 #switch:checked ~ span.on {
   text-shadow: none;

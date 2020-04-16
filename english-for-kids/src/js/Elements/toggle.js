@@ -5,8 +5,8 @@ export default class Toggle extends Component {
     super('section', null);
     const toggle = new Component('input', 'switch');
     const label = new Component('label', null);
-    const train = new Component('span', null, 'off', 'train', 'game')
-    const play = new Component('span', null, 'on', 'play', 'game');
+    const train = new Component('span', null, 'on', 'train', 'game')
+    const play = new Component('span', null, 'off', 'play', 'game');
     const switcherThing = new Component('i', null, 'toggler')
     train.setTextContent('Train');
     play.setTextContent('Play');
