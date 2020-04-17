@@ -1,6 +1,8 @@
 import Component from './component';
 import CardImage from './cardImage';
 import CardTitle from './cardTitle';
+import cardsInformation from './data';
+
 
 export default class Card extends Component {
   constructor(object) {
@@ -22,8 +24,6 @@ export default class Card extends Component {
     this.cardTitle = new CardTitle(word, translation);
     this.cardSound = new Audio(audioSrc);
     this.append(this.cardImage, this.cardTitle);
-    this.addEventListener('click', () => this.getSound());
-    this.addEventListener('click', () => this.toggleCard());
   }
 
   getSound() {
@@ -35,10 +35,9 @@ export default class Card extends Component {
     this.element.classList.add('trans-1');
     this.addEventListener('transitionend', () => {
       this.element.classList.remove('rotate');
-      this.element.classList.remove('trans-1');
       this.cardTitle.swapTitle();
+      this.element.classList.remove('trans-1');
     }, {once: true});
-
     this.addEventListener('mouseleave', () => this.mouseleaveCard(), {once: true})
   }
 
@@ -47,8 +46,8 @@ export default class Card extends Component {
     this.element.classList.add('trans-1');
     this.addEventListener('transitionend', () => {
       this.element.classList.remove('rotate');
-      this.element.classList.remove('trans-1');
       this.cardTitle.swapTitle();
+      this.element.classList.remove('trans-1');
     }, {once: true});
 
   }

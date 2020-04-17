@@ -19,7 +19,8 @@ class App {
     this.toggle = new Toggle();
     this.gameButton = new GameButton();
     this.repeatButton = new RepeatButton();
-    this.cards = getCards('Main page').map((cardObject) => new Card(cardObject));
+    this.currentCategory = 'Main page'
+    this.cards = getCards(this.currentCategory).map((cardObject) => new Card(cardObject));
     this.container.append(this.navigation);
     this.navigation.append(this.navbar);
     this.container.append(this.toggle);
@@ -33,18 +34,33 @@ class App {
     this.navigation.addEventListener('click', (event) => {
       const { target } = event;
       if (target.classList.contains('nav-item') && !target.classList.contains('badge-warning')) {
-        const currentCategory = getCards(event.target.textContent);
-        document.querySelectorAll('.nav-item').forEach((el) => el.classList.remove('badge-warning'));
-        event.target.classList.add('badge-warning');
-        this.navigation.toggle();
-        this.cards.forEach((card, index) => {
-          card.replaceInformation(currentCategory[index]);
-        });
+        this.changeCategory(target.textContent);
       }
     });
 
+    this.cards.forEach((el) => {
+      el.addEventListener('click', (event) => {
+        if(this.currentCategory === 'Main page') {
+          this.changeCategory(el.cardTitle.word);
+        } else {
+          el.toggleCard();
+          el.getSound();
+        }
+    })
+    });
     document.body.append(this.container.element);
     document.querySelector('.nav-item:first-child').classList.add('badge-warning');
+  }
+
+  changeCategory(category) {
+    this.currentCategory = category;
+    const currentCategory = getCards(category);
+    this.cards.forEach((card, index) => {
+      card.replaceInformation(currentCategory[index]);
+    });
+    document.querySelectorAll('.nav-item').forEach((el) => el.classList.remove('badge-warning'));
+    [...document.querySelectorAll('.nav-item')].find((el) => el.textContent === category).classList.add('badge-warning');
+    this.navigation.close();
   }
 }
 

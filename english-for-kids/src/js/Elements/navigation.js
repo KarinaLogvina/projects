@@ -26,4 +26,9 @@ export default class NavContainer extends Component {
     this.element.classList.toggle('h-0');
     this.element.classList.toggle('h-5');
   }
+
+  close() {
+    this.element.classList.remove('h-5');
+    this.element.classList.add('h-0');
+  }
 }
