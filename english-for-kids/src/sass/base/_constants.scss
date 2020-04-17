@@ -2,9 +2,9 @@ $menu-background: #cecdd8;
 $menu-links: #e8edf0;
 
 body {
-  margin-top: 8%;
+  margin-top: 5%;
 }
-.card__face {
+.card {
   width: 16em;
   margin: 0.2rem 0.2rem;
 }
@@ -24,6 +24,9 @@ body {
 .navbar-toggler {
   margin-top: 1%;
   margin-left: 1%;
+}
+.failedGame {
+  z-index: 1000;
 }
 
 .h-5 {

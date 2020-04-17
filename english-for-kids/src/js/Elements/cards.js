@@ -1,8 +1,6 @@
 import Component from './component';
 import CardImage from './cardImage';
 import CardTitle from './cardTitle';
-import cardsInformation from './data';
-
 
 export default class Card extends Component {
   constructor(object) {
@@ -10,8 +8,6 @@ export default class Card extends Component {
       'div',
       null,
       'card',
-      'card__face',
-      'card__face--front',
       'ml-2',
       'shadow-lg',
       'p-3',
@@ -59,5 +55,9 @@ export default class Card extends Component {
     this.cardTitle.translation = translation;
     this.cardTitle.word = word;
     this.cardSound.setAttribute('src', audioSrc);
+  }
+
+  toggleDisplayTitle() {
+    this.cardTitle.element.classList.toggle('d-none');
   }
 }
