@@ -8,7 +8,7 @@ export default class Helper {
   }
 }
 
-export const getCards = (category) => {
+export const getCards = (category ) => {
   if (category !== 'Main page') {
     return cardsInformation.find((cardObject) => cardObject.category === category).cards;
   }

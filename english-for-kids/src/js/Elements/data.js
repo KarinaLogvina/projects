@@ -1,6 +1,7 @@
 const cardsInformation = [
   {
     category: 'Action Set A',
+    icon: './img/actionA.svg',
     cards: [
       {
         word: 'cry',
@@ -54,6 +55,7 @@ const cardsInformation = [
   },
   {
     category: 'Action Set B',
+    icon: './img/actionB.svg',
     cards: [
       {
         word: 'open',
@@ -107,6 +109,7 @@ const cardsInformation = [
   },
   {
     category: 'Animal Set A',
+    icon: './img/animalA.svg',
     cards: [
       {
         word: 'cat',
@@ -160,6 +163,7 @@ const cardsInformation = [
   },
   {
     category: 'Animal Set B',
+    icon: './img/animalB.svg',
     cards: [
       {
         word: 'bird',
@@ -213,6 +217,7 @@ const cardsInformation = [
   },
   {
     category: 'Clothes',
+    icon: './img/clothes.svg',
     cards: [
       {
         word: 'skirt',
@@ -266,6 +271,7 @@ const cardsInformation = [
   },
   {
     category: 'Emotions',
+    icon: './img/emotion.svg',
     cards: [
       {
         word: 'sad',
@@ -319,6 +325,7 @@ const cardsInformation = [
   },
   {
     category: 'Fruits',
+    icon: './img/fruit.svg',
     cards: [
       {
         word: 'pineapple',
@@ -372,6 +379,7 @@ const cardsInformation = [
   },
   {
     category: 'Food',
+    icon: './img/food.svg',
     cards: [
       {
         word: 'pizza',

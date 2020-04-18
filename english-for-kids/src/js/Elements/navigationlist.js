@@ -15,9 +15,9 @@ export default class NavigationList extends Component {
       'm-auto',
       'mr-5'
     );
-    const listItemMain = new NavigationElement('Main page');
+    const listItemMain = new NavigationElement('Main page', './img/home.svg');
     const categories = cardsInformation.map((object) => {
-      const category = new NavigationElement(object.category);
+      const category = new NavigationElement(object.category, object.icon);
       return category;
     });
     this.append(listItemMain, ...categories);

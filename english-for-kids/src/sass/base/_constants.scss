@@ -73,6 +73,12 @@ body {
   max-width: 1110px;
 }
 
+.icon {
+  width: 25px;
+  height: 25px;
+  padding-right: 5px;
+}
+
 .rotate {
   transform: rotateX( 360deg );
 }
