@@ -13,7 +13,7 @@ export default class Card extends Component {
       'p-3',
       'mb-5',
       'bg-white',
-      'rounded'
+      'rounded', 'cursor-pointer'
     );
     const { word, translation, image, audioSrc } = object;
     this.cardImage = new CardImage(image);

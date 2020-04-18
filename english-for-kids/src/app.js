@@ -11,10 +11,12 @@ import {getCards} from './js/Elements/helpers';
 import Game from './js/Elements/game';
 import FailedGame from './js/Elements/failedGame';
 import WonGame from './js/Elements/wonGame';
+import WonStar from './js/Elements/wonstar';
+import WrongStar from './js/Elements/wrongStar';
 
 class App {
   constructor() {
-    this.container = new Component('div', null, 'container', 'mt-5', 'position-relative');
+    this.container = new Component('div', null, 'container', 'pt-10', 'position-relative', 'overflow-hidden');
     this.navigation = new NavContainer();
     this.row = new Row();
     this.navbar = new Navbar();
@@ -23,6 +25,7 @@ class App {
     this.gameButton = new GameButton();
     this.repeatButton = new RepeatButton();
     this.game = new Game();
+    this.starContainer = new Component('div', null, 'star-container', 'd-flex', 'justify-content-start', 'overflow-hidden', 'w-100', 'position-absolute', 'fixed-top');
     this.currentCategory = 'Main page';
     this.cards = getCards(this.currentCategory).map((cardObject) => new Card(cardObject));
     this.container.append(this.navigation);
@@ -31,9 +34,10 @@ class App {
     this.container.append(this.row);
     this.container.append(this.gameButton);
     this.container.append(this.repeatButton);
+    this.container.prepend(this.starContainer);
     this.navbar.append(this.button);
     this.row.append(...this.cards);
-    this.button.element.addEventListener('click', () => this.navigation.toggle());
+    this.button.element.addEventListener('click', () => {this.navigation.toggle(); this.button.toggleButton()});
     this.gameIsOn = false;
 
     this.gameButton.addEventListener('click', () => {
@@ -52,16 +56,23 @@ class App {
       }
     });
 
-    this.cards.forEach((el) => {
-      el.addEventListener('click', (event) => {
+    this.cards.forEach((card) => {
+      card.addEventListener('click', (event) => {
         if(this.currentCategory === 'Main page') {
-          this.changeCategory(el.cardTitle.word);
+          this.changeCategory(card.cardTitle.word);
         } else {
           if(this.gameIsOn === false) {
-            el.toggleCard();
-            el.getSound();
+            card.toggleCard();
+            card.getSound();
           } else {
-            this.game.selectCard(el);
+            const resultOfSelectCard = this.game.selectCard(card);
+            if(resultOfSelectCard === true) {
+              const winStar = new WonStar();
+              this.starContainer.prepend(winStar);
+            } else {
+              const winStar = new WrongStar();
+              this.starContainer.prepend(winStar);
+            }
             if(this.game.gameOver === true) {
               if(this.game.mistakes > 0) {
                 const failedGameScreen = new FailedGame(this.game.mistakes);
@@ -72,6 +83,7 @@ class App {
                 this.container.prepend(wonGameScreen);
                 this.game.winAudio.play();
               }
+              setTimeout(() => window.location.reload(true), 2000);
             }
           }
         }
@@ -83,6 +95,8 @@ class App {
       this.gameButton.toggle();
       if(event.target.checked) {
         this.gameIsOn = event.target.checked;
+      } else {
+        this.gameIsOn = false;
       }
     })
     document.body.append(this.container.element);

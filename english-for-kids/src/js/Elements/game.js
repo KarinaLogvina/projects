@@ -1,4 +1,5 @@
 import Component from "./component";
+import Star from "./wonstar";
 
 export default class Game {
   constructor() {
@@ -25,11 +26,14 @@ export default class Game {
   }
 
   selectCard(card) {
+    let isCorrect = false;
     if(card.cardTitle.word === this.randomCard.cardTitle.word) {
+      isCorrect = true;
       this.rightCard();
     } else {
       this.wrongCard();
     }
+    return isCorrect;
   }
 
   rightCard() {

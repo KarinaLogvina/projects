@@ -2,11 +2,43 @@ $menu-background: #cecdd8;
 $menu-links: #e8edf0;
 
 body {
-  margin-top: 5%;
+  padding-top: 3%;
 }
+
 .card {
   width: 16em;
   margin: 0.2rem 0.2rem;
+
+  &::before, &::after{
+    content:"";
+    width: 0;
+    height: 5px;
+    position: absolute;
+    transition: all 0.2s linear;
+    background: #0c82c279;
+  }
+  
+  &:hover::before, &:hover::after{
+    width: 100%;
+  }
+
+  &::before, &::after{
+    transition-delay: 0.2s;
+  }
+
+  &::before{
+    right: 0;
+    top: 0;
+  }
+
+  &:after{
+    left: 0;
+    bottom: 0;
+  }
+
+  &:hover::before, &:hover::after{
+    transition-delay: 0s;
+  }
 }
 
 .container-fluid {
@@ -25,6 +57,7 @@ body {
   margin-top: 1%;
   margin-left: 1%;
 }
+
 .failedGame {
   z-index: 1000;
 }
@@ -32,9 +65,32 @@ body {
 .h-5 {
   height: 100%;
 }
+.pt-10 {
+  padding-top: 5%;
+}
+
+.star-container {
+  max-width: 1110px;
+}
 
 .rotate {
-  transform: rotateY(360deg);
+  transform: rotateX( 360deg );
+}
+
+.navbar-toggler.rotate {
+  transform: rotate( 90deg );
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.nav-item:hover,
+.nav-item:focus {
+  color:rgba(41, 231, 152, 0.774);
+  background:rgb(108, 195, 230);
+  box-shadow:5px 5px 0 rgb(10, 129, 150) inset;
+  text-shadow:1px 1px 0 rgb(7, 63, 73);
 }
 
 .h-0 {

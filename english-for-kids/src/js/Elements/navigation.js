@@ -12,7 +12,8 @@ export default class NavContainer extends Component {
       'fixed-top',
       'trans-05',
       'overflow-hidden',
-      'bg-info'
+      'bg-info',
+      'overlay'
     );
     const collapse = new Component('div', null, 'collapse');
     this.append(collapse);
