@@ -30,6 +30,10 @@ body {
 .star-container {
   max-width: 1110px;
 }
+  
+.cursor-pointer {
+  cursor: pointer;
+}
 
 .icon {
   width: 25px;
@@ -41,12 +45,11 @@ body {
   width: 20px;
   height: 20px;
 }
-
 .rotate-right {
   animation: rotate_right 0.25s;
   backface-visibility: hidden;
 }
-.rotate-left {
+.rotate-left {  
   animation: rotate_left 0.35s;
   backface-visibility: hidden;
 }
@@ -67,14 +70,6 @@ body {
   100% {
     transform: rotateY(0);
   }
-}
-
-// .rotate {
-//   transform: rotateX(360deg);
-// }
-
-.cursor-pointer {
-  cursor: pointer;
 }
 
 .nav-item:hover,

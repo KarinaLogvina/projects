@@ -24,6 +24,11 @@ export default class Card extends Component {
     this.element.addEventListener('animationend', (event) => {
       if(event.animationName === 'rotate_right') this.cardTitle.swapTitle(!this.rotated);
     })
+    this.element.addEventListener('mouseleave', () => {
+      if(this.rotated === true) {
+        this.toggleCard();
+      }
+    });
   }
 
   getSound() {
@@ -35,17 +40,15 @@ export default class Card extends Component {
     this.element.addEventListener('animationend', () => {
       this.element.classList.remove('rotate-right');
       this.element.classList.add('rotate-left');
-      this.rotated = !this.rotated;
       this.element.addEventListener('animationend', () => {
         this.element.classList.remove('rotate-left');
+        this.rotated = !this.rotated;
       }, {once: true});
     }, { once: true});
-    this.element.parentElement.addEventListener('mouseleave', () => this.toggleCard(), {once: true});
   }
 
   replaceInformation(information) {
     const { word, translation, image, audioSrc, noIcon } = information;
-    // debugger
     if(noIcon) {
       this.rotateButton.element.classList.add('d-none');
     } else {
