@@ -12,8 +12,7 @@ export default class NavigationList extends Component {
       'align-content-center',
       'justify-content-between',
       'w-75',
-      'm-auto',
-      'mr-5'
+      'm-auto'
     );
     const listItemMain = new NavigationElement('Main page', './img/home.svg');
     const categories = cardsInformation.map((object) => {

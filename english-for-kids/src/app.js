@@ -7,7 +7,7 @@ import Navbar from './js/Elements/navbar';
 import GameButton from './js/Elements/gameButton';
 import Toggle from './js/Elements/toggle';
 import RepeatButton from './js/Elements/repeatButton';
-import {getCards} from './js/Elements/helpers';
+import { getCards } from './js/Elements/helpers';
 import Game from './js/Elements/game';
 import FailedGame from './js/Elements/failedGame';
 import WonGame from './js/Elements/wonGame';
@@ -25,7 +25,7 @@ class App {
     this.gameButton = new GameButton();
     this.repeatButton = new RepeatButton();
     this.game = new Game();
-    this.starContainer = new Component('div', null, 'star-container', 'd-flex', 'justify-content-start', 'overflow-hidden', 'w-100', 'position-absolute', 'fixed-top');
+    this.starContainer = new Component('div', null, 'star-container', 'd-flex', 'justify-content-start', 'overflow-hidden', 'w-100');
     this.currentCategory = 'Main page';
     this.cards = getCards(this.currentCategory).map((cardObject) => new Card(cardObject));
     this.container.append(this.navigation);
@@ -36,13 +36,19 @@ class App {
     this.container.append(this.repeatButton);
     this.container.prepend(this.starContainer);
     this.navbar.append(this.button);
-    this.row.append(...this.cards);
-    this.button.element.addEventListener('click', () => {this.navigation.toggle(); this.button.toggleButton()});
+    this.columns = this.cards.map((card) => {
+      const coll = new Component('div', null, 'col', 'd-flex', 'justify-content-center');
+      coll.append(card)
+      return coll;
+    });
+    this.row.append(...this.columns);
+    this.button.element.addEventListener('click', () => { this.navigation.toggle(); this.button.toggleButton() });
     this.gameIsOn = false;
 
     this.gameButton.addEventListener('click', () => {
       this.gameButton.toggle();
       this.repeatButton.toggle();
+      this.toggle.changeDisplay();
       this.game.startGame(this.cards);
       this.repeatButton.addEventListener('click', () => {
         this.game.playAudioCurrentCard();
@@ -58,23 +64,23 @@ class App {
 
     this.cards.forEach((card) => {
       card.addEventListener('click', (event) => {
-        if(this.currentCategory === 'Main page') {
+        if (this.currentCategory === 'Main page') {
           this.changeCategory(card.cardTitle.word);
         } else {
-          if(this.gameIsOn === false) {
+          if (this.gameIsOn === false) {
             card.toggleCard();
             card.getSound();
-          } else {
+          } else {  
             const resultOfSelectCard = this.game.selectCard(card);
-            if(resultOfSelectCard === true) {
+            if (resultOfSelectCard === true) {
               const winStar = new WonStar();
               this.starContainer.prepend(winStar);
             } else {
               const winStar = new WrongStar();
               this.starContainer.prepend(winStar);
             }
-            if(this.game.gameOver === true) {
-              if(this.game.mistakes > 0) {
+            if (this.game.gameOver === true) {
+              if (this.game.mistakes > 0) {
                 const failedGameScreen = new FailedGame(this.game.mistakes);
                 this.container.prepend(failedGameScreen);
                 this.game.defeatAudio.play();
@@ -93,7 +99,7 @@ class App {
     this.toggle.addEventListener('change', (event) => {
       this.cards.forEach((card) => card.toggleDisplayTitle());
       this.gameButton.toggle();
-      if(event.target.checked) {
+      if (event.target.checked) {
         this.gameIsOn = event.target.checked;
       } else {
         this.gameIsOn = false;
@@ -111,6 +117,7 @@ class App {
     });
     document.querySelectorAll('.nav-item').forEach((el) => el.classList.remove('badge-warning'));
     [...document.querySelectorAll('.nav-item')].find((el) => el.textContent === category).classList.add('badge-warning');
+    this.button.element.classList.remove('selected')
     this.navigation.close();
   }
 }

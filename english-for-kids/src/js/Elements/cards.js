@@ -8,7 +8,6 @@ export default class Card extends Component {
       'div',
       null,
       'card',
-      'ml-2',
       'shadow-lg',
       'p-3',
       'mb-5',
@@ -19,7 +18,9 @@ export default class Card extends Component {
     this.cardImage = new CardImage(image);
     this.cardTitle = new CardTitle(word, translation);
     this.cardSound = new Audio(audioSrc);
-    this.append(this.cardImage, this.cardTitle);
+    this.rotateButton = new Component('img', null, 'rotateButton', 'float-right');
+    this.rotateButton.setAttribute('src', './img/rotate.svg');
+    this.append(this.cardImage, this.cardTitle, this.rotateButton);
   }
 
   getSound() {
@@ -59,5 +60,6 @@ export default class Card extends Component {
 
   toggleDisplayTitle() {
     this.cardTitle.element.classList.toggle('d-none');
+    this.rotateButton.element.classList.toggle('d-none'); 
   }
 }

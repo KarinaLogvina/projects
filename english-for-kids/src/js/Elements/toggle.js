@@ -15,4 +15,8 @@ export default class Toggle extends Component {
     label.append(switcherThing);
     this.append(toggle, label, play, train);
   }
+
+  changeDisplay() {
+    this.element.setAttribute('style', 'visibility:hidden');
+  }
 }

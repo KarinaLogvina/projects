@@ -1,0 +1,53 @@
+$color: #306974;
+$burgerSize: 2rem;
+
+.burger {
+  padding-top: 1.5%;
+  margin: 0.8rem 2rem 0.8rem 2rem;
+  display: inline-block;
+  width: $burgerSize * 1.2;
+  height: $burgerSize;
+  
+  &:hover {
+    cursor: pointer;
+  }
+  
+  .burger-line, .burger-line:before, .burger-line:after {
+    display: block;
+    width: 100%;
+    height: $burgerSize / 5;
+    background: $color;
+    transition: all 0.5s;
+    backface-visibility: hidden;
+  }
+  
+  .burger-line {
+    position: relative;
+    margin: ($burgerSize * 2 / 5) 0 0;
+  }
+  
+  .burger-line:before, .burger-line:after {
+    position: absolute;
+    content: "";
+  }
+  
+  .burger-line:before {
+    top: $burgerSize * -2 / 5;
+  }
+  
+  .burger-line:after {
+    top: $burgerSize * 2 / 5;
+  }
+}
+
+.burger1.selected {
+  .burger-line:before {
+    transform: translate(0px, ($burgerSize * 2 / 5)) rotate(-45deg);
+  }
+  .burger-line:after {
+    transform: translate(0px, -($burgerSize * 2 / 5)) rotate(45deg);
+  }
+  .burger-line {
+    background: transparent;
+  }
+}
