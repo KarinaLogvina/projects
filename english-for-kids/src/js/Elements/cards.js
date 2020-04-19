@@ -63,6 +63,7 @@ export default class Card extends Component {
 
   toggleDisplayTitle() {
     this.cardTitle.element.classList.toggle('d-none');
-    this.rotateButton.element.classList.toggle('d-none'); 
+    this.rotateButton.element.classList.toggle('d-none');
+ 
   }
 }

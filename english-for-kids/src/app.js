@@ -16,7 +16,7 @@ import WrongStar from './js/Elements/wrongStar';
 
 class App {
   constructor() {
-    this.container = new Component('div', null, 'container', 'pt-10', 'position-relative', 'overflow-hidden');
+    this.container = new Component('div', null, 'container', 'pt-10', 'pb-4', 'position-relative', 'overflow-hidden');
     this.navigation = new NavContainer();
     this.row = new Row();
     this.navbar = new Navbar();
