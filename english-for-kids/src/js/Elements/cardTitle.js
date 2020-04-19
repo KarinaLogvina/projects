@@ -2,7 +2,7 @@ import Component from './component';
 
 export default class CardTitle extends Component {
   constructor(word, translation) {
-    super('h5', null, 'card-title');
+    super('h5', null, 'card-title', 'text-nowrap');
     this.word = word;
     this.translation = translation;
     this.element.textContent = word;

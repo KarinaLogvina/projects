@@ -1,0 +1,47 @@
+@import "./colors";
+
+.card {
+  width: 16em;
+
+  &::before, &::after{
+    content:"";
+    width: 0;
+    height: 5px;
+    position: absolute;
+    transition: all 0.2s linear;
+    background: $main-background-color;
+  }
+  
+  &:hover::before, &:hover::after{
+    width: 100%;
+  }
+
+  &::before, &::after{
+    transition-delay: 0.2s;
+  }
+
+  &::before{
+    right: 0;
+    top: 0;
+  }
+
+  &:after{
+    left: 0;
+    bottom: 0;
+  }
+
+  &:hover::before, &:hover::after{
+    transition-delay: 0s;
+  }
+
+  .rotateButton {
+    margin: 5px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .rotate {
+    transform: rotateX( 360deg );
+  }
+  
+}

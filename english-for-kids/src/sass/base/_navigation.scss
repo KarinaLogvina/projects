@@ -1,0 +1,38 @@
+@import "./colors";
+
+.navcontainer  {
+  .nav-item {
+    &:hover,
+    &:focus {
+      color: $navigation-hover-color;
+      background: $navigation-hover-background;
+      box-shadow:5px 5px 0 $navigation-hover-box-shadow inset;
+      text-shadow:1px 1px 0 $navigation-hover-tex-shadow;
+    }
+
+    .icon {
+      width: 25px;
+      height: 25px;
+      padding-right: 5px;
+    }
+
+    .pt-10 {
+      padding-top: 5%;
+    }
+
+    .active {
+      text-decoration-color: #fff;
+    }
+  }
+
+  .h-0 {
+    height: 0;
+  }
+
+  .h-5 {
+    height: 100%;
+  }
+  .trans-05 {
+    transition: 0.5s;
+  }
+}

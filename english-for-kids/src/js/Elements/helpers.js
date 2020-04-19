@@ -15,5 +15,6 @@ export const getCards = (category ) => {
   return cardsInformation.map((categoryObject) => ({
     image: categoryObject.cards[0].image,
     word: categoryObject.category,
+    noIcon: true
   }));
 };

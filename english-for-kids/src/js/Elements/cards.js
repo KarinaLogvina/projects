@@ -18,9 +18,12 @@ export default class Card extends Component {
     this.cardImage = new CardImage(image);
     this.cardTitle = new CardTitle(word, translation);
     this.cardSound = new Audio(audioSrc);
-    this.rotateButton = new Component('img', null, 'rotateButton', 'float-right');
+    this.rotateButton = new Component('img', null, 'rotateButton', 'float-right', 'd-none');
     this.rotateButton.setAttribute('src', './img/rotate.svg');
     this.append(this.cardImage, this.cardTitle, this.rotateButton);
+    this.element.addEventListener('animationend', (event) => {
+      if(event.animationName === 'rotate_right') this.cardTitle.swapTitle(!this.rotated);
+    })
   }
 
   getSound() {
@@ -28,29 +31,26 @@ export default class Card extends Component {
   }
 
   toggleCard() {
-    this.element.classList.add('rotate');
-    this.element.classList.add('trans-1');
-    this.addEventListener('transitionend', () => {
-      this.element.classList.remove('rotate');
-      this.cardTitle.swapTitle();
-      this.element.classList.remove('trans-1');
-    }, {once: true});
-    this.addEventListener('mouseleave', () => this.mouseleaveCard(), {once: true})
-  }
-
-  mouseleaveCard() {
-    this.element.classList.add('rotate');
-    this.element.classList.add('trans-1');
-    this.addEventListener('transitionend', () => {
-      this.element.classList.remove('rotate');
-      this.cardTitle.swapTitle();
-      this.element.classList.remove('trans-1');
-    }, {once: true});
-
+    this.element.classList.add('rotate-right');
+    this.element.addEventListener('animationend', () => {
+      this.element.classList.remove('rotate-right');
+      this.element.classList.add('rotate-left');
+      this.rotated = !this.rotated;
+      this.element.addEventListener('animationend', () => {
+        this.element.classList.remove('rotate-left');
+      }, {once: true});
+    }, { once: true});
+    this.element.parentElement.addEventListener('mouseleave', () => this.toggleCard(), {once: true});
   }
 
   replaceInformation(information) {
-    const { word, translation, image, audioSrc } = information;
+    const { word, translation, image, audioSrc, noIcon } = information;
+    // debugger
+    if(noIcon) {
+      this.rotateButton.element.classList.add('d-none');
+    } else {
+      this.rotateButton.element.classList.remove('d-none');
+    }
     this.cardImage.setAttribute('src', image);
     this.cardTitle.element.textContent = word;
     this.cardTitle.translation = translation;
