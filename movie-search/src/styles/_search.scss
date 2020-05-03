@@ -1,0 +1,71 @@
+@import "./colors";
+
+.search-field {
+	margin: 0 auto;
+	.search {
+		display: flex;
+		justify-content: space-between;
+		margin: 2%;
+		padding: 3px;
+		&.expand {
+			input {
+				max-width: 900px;
+				padding: 3px 56px 3px 10px;
+				line-height: 1;
+				cursor: auto;
+				background-color: $primary-color;
+			}
+
+			.icon-close {
+				z-index: 9;
+				opacity: 1;
+			}
+		}
+
+		input {
+			width: calc(100% - 184px);
+			max-width: 900px;
+			box-sizing: border-box;
+			padding: 3px 0;
+			line-height: 1;
+			color: $secondary-color;
+			cursor: pointer;
+			background-color: transparent;
+			border: none;
+			border-radius: 0;
+			transition: all 0.5s;
+
+			&::-webkit-input-placeholder {
+				padding-left: 3px;
+				color: $secondary-color;
+			}
+
+			&::-moz-placeholder {
+				padding-left: 3px;
+				color: $secondary-color;
+			}
+
+			&:-moz-placeholder {
+				padding-left: 3px;
+				color: $secondary-color;
+			}
+
+			&:-ms-input-placeholder {
+				padding-left: 3px;
+				color: $secondary-color;
+			}
+		}
+
+		.icon-search {
+			position: relative;
+			top: 1px;
+			left: 20px;
+			float: left;
+			width: 36px;
+
+			path {
+				fill: $secondary-color;
+			}
+		}
+	}
+}

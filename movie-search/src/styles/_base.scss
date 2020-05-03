@@ -1,0 +1,30 @@
+@import "./colors";
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+header {
+  background-color: $primary-color;
+}
+
+footer { 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: $primary-color;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+}

@@ -1,0 +1,23 @@
+@import "./colors";
+@import "./mixin";
+
+.footer {
+  width: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  .contact {
+    display: flex;
+    align-items: center;
+    a {
+      margin: 10px;
+      text-decoration: none;
+      @include font-source-sans(false, $fonts-light);
+    }
+  }
+  .school {
+    margin: 10px;
+    @include font-source-sans(false, $fonts-light);
+  }
+}

@@ -1,0 +1,6 @@
+@import "./mixin";
+@import "./colors";
+
+h1 {
+  @include font-source-sans(false, $fonts-light);
+}
