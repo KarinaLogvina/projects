@@ -1,14 +1,37 @@
 import Swiper from 'swiper';
+import { loadOmdbQuery } from './app/loader';
+import { createCard } from './app/helper';
+
+let currentPage = 0;
+const params = new URLSearchParams(window.location.search);
+
+async function loadPage(page) {
+  const elems = await loadOmdbQuery(params.get('s'), page).then((res) => {
+    if (Array.isArray(res)) {
+      return res
+        .map((obj) => createCard(obj.Title, obj.Poster, obj.Year, obj.Rating, obj.imdbID));
+    }
+    return [];
+  });
+  return elems;
+}
 
 const swiper = new Swiper('.swiper-container', {
-  cssMode: true,
+  slidesPerView: 3,
+  centeredSlides: true,
+  spaceBetween: 30,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
   },
-  pagination: {
-    el: '.swiper-pagination'
+  on: {
+    reachEnd() {
+      currentPage += 1;
+      loadPage(currentPage).then((res) => this.appendSlide(res));
+    },
   },
-  mousewheel: true,
-  keyboard: true,
 });
