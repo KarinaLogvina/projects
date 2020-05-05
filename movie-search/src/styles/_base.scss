@@ -14,14 +14,14 @@ body {
 }
 
 header {
-  background-color: $primary-color;
+  background-color: $background-primary-color;
 }
 
 footer { 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: $primary-color;
+  background-color: $background-primary-color;
 }
 
 .icon {

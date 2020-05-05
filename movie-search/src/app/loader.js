@@ -1,9 +1,13 @@
 const omdbKey = 'db73ee1f';
 const loadMovieRating = async (imdbID) => {
-  const url = `https://www.omdbapi.com/?i=${imdbID}&apikey=${omdbKey}`;
-  const res = await fetch(url);
-  const json = await res.json();
-  return json;
+  try {
+    const url = `https://www.omdbapi.com/?i=${imdbID}&apikey=${omdbKey}`;
+    const res = await fetch(url);
+    const json = await res.json();
+    return json;
+  } catch (error) {
+    return 'Raiting load error';
+  }
 };
 
 
@@ -23,7 +27,8 @@ const getTranslation = async (word) => {
 };
 
 const loadOmdbQuery = async (searchQuery, page = 1) => {
-  let encoded = encodeURIComponent(searchQuery || 'dream');
+  const query = searchQuery || 'dream';
+  let encoded = encodeURIComponent(query.trim());
   const lang = await getLang(encoded);
   if (lang === 'ru') {
     encoded = await getTranslation(encoded);

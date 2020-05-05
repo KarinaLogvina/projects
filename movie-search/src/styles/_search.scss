@@ -11,7 +11,7 @@
 				padding: 3px 56px 3px 10px;
 				line-height: 1;
 				cursor: auto;
-				background-color: $primary-color;
+				background-color: $background-primary-color;
 			}
 
 			.icon-close {
@@ -26,31 +26,17 @@
 			box-sizing: border-box;
 			padding: 3px 0;
 			line-height: 1;
-			color: $secondary-color;
+			color: $background-secondary-color;
 			cursor: pointer;
 			background-color: transparent;
 			border: none;
 			border-radius: 0;
 			transition: all 0.5s;
+			text-indent: 10px;
 
 			&::-webkit-input-placeholder {
 				padding-left: 3px;
-				color: $secondary-color;
-			}
-
-			&::-moz-placeholder {
-				padding-left: 3px;
-				color: $secondary-color;
-			}
-
-			&:-moz-placeholder {
-				padding-left: 3px;
-				color: $secondary-color;
-			}
-
-			&:-ms-input-placeholder {
-				padding-left: 3px;
-				color: $secondary-color;
+				color: $background-secondary-color;
 			}
 		}
 
@@ -62,7 +48,7 @@
 			width: 36px;
 
 			path {
-				fill: $secondary-color;
+				fill: $background-secondary-color;
 			}
 		}
 	}

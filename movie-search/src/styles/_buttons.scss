@@ -1,0 +1,13 @@
+button {
+  background-color: $background-primary-color;
+  border: none;
+  border-radius: 10px;
+  color: $fonts-light;
+  width: 80px;
+  height: 50px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $background-secondary-color;
+  }
+}

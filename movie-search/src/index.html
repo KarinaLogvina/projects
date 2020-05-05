@@ -23,12 +23,16 @@
         <form class="search" role="search" method="get" action="/">
           <img src="https://cdn2.iconfinder.com/data/icons/mixed-rounded-flat-icon/512/magnifier_glass-512.png"
             class="icon" alt="">
-          <input type="search" name="s" placeholder="Search Movie">
+          <input type="search" name="s" autocomplete="off" autofocus placeholder="Search Movie">
           <div class="container">
             <div class="loader"></div>
           </div>
+          <div class="search-button">
+            <button>Search</button>
+          </div>
           <img class="icon" src="https://s1.iconbird.com/ico/2013/11/504/w128h1281385326489keyboard.png" alt="keyboard">
         </form>
+        <div class="error"></div>
         <div class="swiper-container">
           <div class="swiper-wrapper">
           </div>
