@@ -23,7 +23,7 @@ const createCard = (title, poster, year, rate, id) => {
   movieTitle.textContent = title;
   movieYear.textContent = year;
   movieRate.textContent = rate.imdbRating;
-  movieContainer.append(movieTitle, moviePoster, movieYear, movieRate);
+  movieContainer.append(movieTitle, movieYear, moviePoster, movieRate);
   return movieContainer;
 };
 

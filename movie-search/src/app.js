@@ -17,9 +17,9 @@ async function loadPage(page) {
 }
 
 const swiper = new Swiper('.swiper-container', {
-  slidesPerView: 3,
-  centeredSlides: true,
-  spaceBetween: 30,
+  slidesPerView: 4,
+  centeredSlides: false,
+  spaceBetween: 0,
   pagination: {
     el: '.swiper-pagination',
     clickable: true,

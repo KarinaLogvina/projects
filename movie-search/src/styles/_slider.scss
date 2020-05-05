@@ -1,6 +1,6 @@
 
 .swiper-container {
-  width: 90%;
+  width: 95%;
   height: 80%;
 
   .swiper-slide {
@@ -11,5 +11,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    .movie-title, .movie-year, .movie-rate {
+      @include font-source-sans(false, $fonts-dark);
+      width: 200px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .movie-poster {
+      img{
+        height: 300px;
+      }
+    }
   }
 }
