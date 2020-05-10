@@ -63,4 +63,6 @@ function parseToPages(elements, pageSize = 4) {
   return result;
 }
 
-export { createPoster, createCard, parseToPages };
+export {
+  createPoster, createCard, parseToPages, createTitle, createRate, createYear,
+};
