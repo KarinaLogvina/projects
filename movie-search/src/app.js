@@ -1,6 +1,8 @@
 import Swiper from 'swiper';
 import { loadOmdbQuery } from './app/loader';
 import { createCard } from './app/helper';
+import { createKey, languargeSelection } from './app/keyboard';
+import { createEvent, events } from './app/events';
 
 let currentPage = 0;
 let currentQuery = 'dream';
@@ -8,8 +10,8 @@ const params = new URLSearchParams(window.location.search);
 
 async function loadPage(page, query) {
   const loadResult = await loadOmdbQuery(query, page);
-  if (Array.isArray(loadResult)) {
-    const cards = loadResult
+  if (loadResult.Response === 'True') {
+    const cards = loadResult.Search
       .map((obj) => createCard(obj.Title, obj.Poster, obj.Year, obj.Rating, obj.imdbID));
     return {
       Result: 'Success',
@@ -19,18 +21,9 @@ async function loadPage(page, query) {
 
   return {
     Result: 'Failure',
-    Error: loadResult,
+    Error: loadResult.Error,
   };
 }
-
-// currentPage += 1;
-// loadPage(currentPage, currentQuery).then((pageResult) => {
-//   if (pageResult.Result === 'Success') {
-//     document.querySelector('.swiper-wrapper').append(...pageResult.data);
-//   } else {
-//     document.querySelector('.error').textContent = pageResult.Error;
-//   }
-// });
 
 document.querySelector('.search').addEventListener('submit', (event) => {
   event.preventDefault();
@@ -49,9 +42,17 @@ document.querySelector('.search').addEventListener('submit', (event) => {
   });
 });
 
+const keyboardButton = document.querySelector('.btn-keyboard');
+const keyboard = document.querySelector('.key-wrapper');
+keyboard.addEventListener(events.toggle, () => keyboard.classList.toggle('unactive'));
+keyboardButton.addEventListener(events.click, () => {
+  keyboard.classList.toggle('unactive');
+  document.querySelector('.search-input').focus();
+  createKey(languargeSelection.en, 0);
+});
 
 const swiper = new Swiper('.swiper-container', {
-  slidesPerView: 4,
+  slidesPerView: 3,
   centeredSlides: true,
   spaceBetween: 0,
   observer: true,
@@ -87,7 +88,6 @@ const swiper = new Swiper('.swiper-container', {
           document.querySelector('.error').textContent = pageResult.Error;
         }
       });
-      console.log('reachEnd');
     },
   },
 });

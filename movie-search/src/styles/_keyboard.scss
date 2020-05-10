@@ -1,0 +1,61 @@
+.row {
+  display: flex;
+  justify-content: space-between;
+
+}
+.key-wrapper {
+    background-color: $background-primary-color;
+    position: absolute;
+    left: 51%;
+    top: 52%;
+    transform: translate(-50%, -55%);
+    z-index: 1000;
+    border-radius: 20px;
+    height: 300px;
+    width: 1020px;  
+    .keyboard {
+        padding-top: 3%;
+        max-width: 900px;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        .key {
+            width: 12%;
+            height: 40px;
+            align-items: center;
+            text-align: center;
+            line-height: 2.4em;
+            background-color: $key-color;
+            margin: 0.2%;
+            border-radius: 3px;
+            @include font-source-sans(false, $fonts-light);
+            &:hover {
+                border-color: $fonts-light;
+                color: $fonts-light;
+                cursor: pointer;
+            }
+        }
+        .space {
+            width: 78%;
+        }
+        .special {
+            width: 17%;
+        }
+    }
+}
+
+
+.active {
+    background-color: $background-primary-color;
+    border-color: $fonts-light;
+    color: $fonts-light;
+    animation: example 0.8s infinite ease-in-out;
+}
+
+@keyframes example {
+    0%   {background-color: #3FA6A7;}
+    25%  {background-color: #365DB1;}
+    50%  {background-color: #79799B;}
+    100% {background-color: #293458;}
+}

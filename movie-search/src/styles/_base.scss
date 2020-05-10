@@ -27,4 +27,19 @@ footer {
 .icon {
   width: 50px;
   height: 50px;
+  &:hover {
+    box-shadow: 2px 1px 12px 10px $background-primary-color;
+    border-radius: 40px;
+    cursor: pointer;
+  }
+}
+
+.unactive {
+  display: none;
+}
+
+@media (max-width: 1020px) {
+  .btn-keyboard {
+    display: none;
+  }
 }

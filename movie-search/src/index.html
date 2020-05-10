@@ -7,6 +7,7 @@
   <link rel="shortcut icon"
     href="https://cdn4.iconfinder.com/data/icons/movies-1-ultra-color/60/010_-_Camera_Play-512.png">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
   <title>Movie Search</title>
 </head>
@@ -23,16 +24,18 @@
         <form class="search" role="search" method="get" action="/">
           <img src="https://cdn2.iconfinder.com/data/icons/mixed-rounded-flat-icon/512/magnifier_glass-512.png"
             class="icon" alt="">
-          <input type="search" name="s" autocomplete="off" autofocus placeholder="Search Movie">
+          <input type="search" name="s" autocomplete="off" autofocus placeholder="Search Movie" class="search-input">
           <div class="container">
-            <div class="loader"></div>
+            <div class="loader unactive"></div>
           </div>
           <div class="search-button">
             <button>Search</button>
           </div>
-          <img class="icon" src="https://s1.iconbird.com/ico/2013/11/504/w128h1281385326489keyboard.png" alt="keyboard">
+          <img class="icon btn-keyboard" src="https://s1.iconbird.com/ico/2013/11/504/w128h1281385326489keyboard.png"
+            alt="keyboard">
         </form>
         <div class="error"></div>
+        <div class="serching-for"></div>
         <div class="swiper-container">
           <div class="swiper-wrapper">
           </div>
