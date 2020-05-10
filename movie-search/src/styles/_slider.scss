@@ -12,18 +12,30 @@
     justify-content: center;
     align-items: center;
 
-    .movie-title, .movie-year {
+    &:hover {
+      cursor: pointer;
+      transition: 0.3s;
+      transform: scale(0.97);
+    }
+
+    .movie-title {
       @include font-source-sans(false, $fonts-dark);
       width: 200px;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      &:hover {
+        color: $error-color;
+      }
     }
     .movie-rate {
       @include font-source-sans(false, $fonts-dark);
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+    .movie-year {
+      @include font-source-sans(false, $fonts-dark);
     }
 
     .movie-poster {
