@@ -52,7 +52,7 @@ keyboardButton.addEventListener(events.click, () => {
 });
 
 const swiper = new Swiper('.swiper-container', {
-  slidesPerView: 3,
+  slidesPerView: 4,
   centeredSlides: true,
   spaceBetween: 0,
   observer: true,
