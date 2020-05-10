@@ -32,7 +32,8 @@
             @include font-source-sans(false, $fonts-light);
             &:hover {
                 border-color: $fonts-light;
-                color: $fonts-light;
+                background-color: $fonts-light;
+                color: $fonts-dark;
                 cursor: pointer;
             }
         }
