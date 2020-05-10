@@ -18,6 +18,9 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .movie-poster {

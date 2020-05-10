@@ -20,6 +20,9 @@ const createCard = (title, poster, year, rate, id) => {
   movieTitle.setAttribute('target', '_blank');
   movieTitle.classList.add('movie-title');
   movieTitle.setAttribute('title', `${title}`);
+  const star = document.createElement('img');
+  star.setAttribute('src', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWG8OrTDYMbECoTTNp4qFy1h75DcKBpS8t09nMdPNNnJBprAdB&usqp=CAU');
+  star.classList.add('icon');
   const moviePoster = createPoster(poster);
   const movieYear = document.createElement('div');
   movieYear.classList.add('movie-year');
@@ -31,6 +34,7 @@ const createCard = (title, poster, year, rate, id) => {
   }
   movieRate.classList.add('movie-rate');
   movieTitle.textContent = title;
+  movieRate.prepend(star);
   movieYear.textContent = year;
   movieContainer.append(movieTitle, movieYear, moviePoster, movieRate);
   return movieContainer;
