@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-function App() {
+import getWeathers from './api/getWeathers';
+
+const wether =  getWeathers().then((res) => console.log(res))
+
+const App = () => {
   return (<div className="test">Hello world!</div>);
 }
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root'),
-);
+
+ReactDOM.render(<App/>, document.getElementById('root'));
