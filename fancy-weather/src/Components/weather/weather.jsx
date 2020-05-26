@@ -1,6 +1,9 @@
 import React from 'react';
+import {useDispatch} from 'react-redux';
 
 function Weather () {
+  const dispath = useDispatch ();
+
   return (
     <div>
       <h3 className="city">Minsk</h3>
