@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import getWeathers from './api/getWeathers';
-
-const wether =  getWeathers().then((res) => console.log(res))
+import ControlBox from './Components/controlBlock/controlBlock.jsx';
+import { Provider } from 'react-redux';
+import store from './store'
+import Weather from './Components/weather/weather.jsx';
 
 const App = () => {
-  return (<div className="test">Hello world!</div>);
+  return (<Provider store={store}>
+    <ControlBox/>
+    <Weather/>
+  </Provider>);
 }
 
 
