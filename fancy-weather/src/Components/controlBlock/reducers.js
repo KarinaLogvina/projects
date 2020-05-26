@@ -1,0 +1,21 @@
+import {
+  SetLanguage, SetCity, SetUnit, SetBg,
+} from './actions';
+
+const initState = {
+  lang: 'en',
+  unit: 'C',
+  city: 'Minsk',
+};
+
+const controls = (state = initState, action) => {
+  switch (action.type) {
+    case SetLanguage: { return { ...state, lang: action.payload.lang }; }
+    case SetCity: { return { ...state, city: action.payload.city }; }
+    case SetUnit: { return { ...state, unit: action.payload.unit }; }
+    case SetBg: { return { ...state }; }
+    default: return state;
+  }
+};
+
+export default controls;
