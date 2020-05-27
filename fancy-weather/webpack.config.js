@@ -16,7 +16,7 @@ module.exports = (env, options) => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', '@babel/preset-react'],
+              presets: ['@babel/preset-env', "@babel/react"],
               plugins: ['@babel/plugin-transform-runtime'],
             },
           },
@@ -25,9 +25,7 @@ module.exports = (env, options) => {
           test: /\.s[ac]ss$/i,
           use: [
             MiniCssExtractPlugin.loader,
-            // Translates CSS into CommonJS
             'css-loader',
-            // Compiles Sass to CSS
             'sass-loader',
           ],
         },
