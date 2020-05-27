@@ -1,24 +1,36 @@
-import { SetTemp, SetApparent, SetSpeed, SetMoist, SetWeatherIcon } from "./actions";
+import { SetTemp, SetApparent, SetSpeed, SetMoist, SetWeatherIcon, SetWeatherData } from "./actions";
 
 
 const initState = {
-  temp: 0,
-  apparent: 0,
-  speed: 5,
-  moist: 20,
-  icon: ''
+  data: {
+    location:
+      {
+        "name":"Minsk",
+        "region":"Minsk",
+        "country":"Belarus",
+        "lat":53.9,
+        "lon":27.57,
+        "localtime":"2020-05-27 15:05"
+      },
+    current: {
+      temp_c: '',
+      wind_kph: '',
+      humidity: '',
+      condition: {
+        text: '',
+        icon: ''
+      }
+    },
+    forecast: []
+  }
 };
 
-const controls = (state = initState, action) => {
+const weather = (state = initState, action) => {
   switch (action.type) {
-    case SetTemp: { return { ...state, temp: action.payload.temp }; }
-    case SetApparent: { return { ...state, apparent: action.payload.apparent }; }
-    case SetSpeed: { return { ...state, speed: action.payload.speed }; }
-    case SetMoist: { return { ...state, moist: action.payload.moist }; }
-    case SetWeatherIcon: { return { ...state, icon: action.payload.icon }; }
+    case SetWeatherData: { return {...state, data: action.payload.data}}
 
     default: return state;
   }
 };
 
-export default controls;
+export default weather;
