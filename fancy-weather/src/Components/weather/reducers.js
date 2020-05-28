@@ -1,4 +1,4 @@
-import { SetTemp, SetApparent, SetSpeed, SetMoist, SetWeatherIcon, SetWeatherData } from "./actions";
+import { SetWeatherData } from "./actions";
 
 
 const initState = {

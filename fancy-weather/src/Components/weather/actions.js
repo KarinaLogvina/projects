@@ -4,8 +4,8 @@ export const SetSpeed = 'SetSpeed';
 export const SetMoist = 'SetMoist';
 export const SetWeatherIcon = 'SetWeatherIcon';
 export const SetWeatherData = 'SetWeatherData';
-export const SetWeatherError ='SetWeatherError'
-import getWeathers from '../../api/getWeathers'
+export const SetWeatherError ='SetWeatherError';
+import getWeathers from '../../api/getWeathers';
 
 export const setTemp = (temp) => ({
   type: SetTemp,
@@ -42,8 +42,8 @@ export const setWeatherError = (error) => ({
   payload: { error }
 });
 
-export const loadWeather = (dispatch, location) => {
-  getWeathers(location)
+export const loadWeather = (location) => {
+  return dispatch => getWeathers(location)
     .then(
       data => dispatch(setWeatherData(data)),
       error => dispatch(setWeatherError(error))
