@@ -11,7 +11,7 @@ class Weather extends Component {
   }
   
   componentDidMount() {
-    this.props.dispatch(loadWeather(this.props.query));
+    this.props.loadWeather(this.props.query);
   }
 
   componentDidUpdate() {
@@ -23,7 +23,6 @@ class Weather extends Component {
     const { name, country, lat, lon, localtime } = location;
     const { temp_c, humidity, wind_kph, feelslike_c, condition} = current;
     const { icon, text} = condition
-    console.log(this.props.weatherData)
 
     return (
       <div>

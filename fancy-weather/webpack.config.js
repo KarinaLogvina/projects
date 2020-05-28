@@ -42,7 +42,7 @@ module.exports = (env, options) => {
     }), new CopyPlugin([
       { from: './src/assets', to: 'assets' },
     ])],
-    entry: ['./src/app.js', './src/style.scss'],
+    entry: ['./src/app.jsx', './src/style.scss'],
     output: {
       filename: 'main.js',
       path: path.resolve(__dirname, 'dist'),

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ControlBox from './Components/controlBlock/controlBlock.jsx';
+import ControlBox from './Components/controlBlock/constrolBoxes.jsx';
 import { Provider } from 'react-redux';
 import store from './store'
 import Weather from './Components/weather/weathers.jsx';
