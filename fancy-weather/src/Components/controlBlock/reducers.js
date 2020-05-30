@@ -1,5 +1,5 @@
 import {
-  SetLanguage, SetCity, SetUnit, SetBg, SetSearchQuery,
+  SetLanguage, SetCity, SetUnit, SetSearchQuery,
 } from './actions';
 
 const initState = {
@@ -14,7 +14,6 @@ const controls = (state = initState, action) => {
     case SetLanguage: { return { ...state, lang: action.payload.lang }; }
     case SetCity: { return { ...state, city: action.payload.city }; }
     case SetUnit: { return { ...state, unit: action.payload.unit }; }
-    case SetBg: { return { ...state }; }
     case SetSearchQuery: { return {...state, query: action.payload.query}; }
     default: return state;
   }

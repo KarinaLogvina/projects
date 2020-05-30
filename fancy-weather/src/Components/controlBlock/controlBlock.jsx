@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getLang } from './selectors';
-import { setUnit } from './actions';
+import { setUnit, fetchNewBg } from './actions';
 import { bindActionCreators } from "redux";
 
 
@@ -18,11 +18,15 @@ class ControlBox extends Component {
         return () => this.props.setUnit(unit);
     }
 
+    setBgURL() {
+        return () => this.props.fetchNewBg();
+    }
+
     render() {
         return (
             <div className="controlBox">
                 <div className="optionsBox">
-                    <button>reload</button>
+                    <button onClick={this.setBgURL()}>reload</button>
                     <select name="language" id="lang">
                         <option
                             value="en"
@@ -47,7 +51,7 @@ class ControlBox extends Component {
                         </option>
                     </select>
                     <button
-                        onClick={this.setUnit('C')}
+                        onClick={this.setUnit('C')} 
                         className="btn_unit__active"
                     >
                         °C
@@ -73,6 +77,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         setUnit: setUnit,
+        fetchNewBg: fetchNewBg,
     }, dispatch)
 }
 
