@@ -1,0 +1,1 @@
+export const getBgUrl = (store) => store.app.bgUrl
