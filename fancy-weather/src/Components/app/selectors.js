@@ -1,1 +1,3 @@
-export const getBgUrl = (store) => store.app.bgUrl
+const getBgUrl = (store) => store.app.bgUrl;
+
+export default getBgUrl;
