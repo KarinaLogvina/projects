@@ -1,0 +1,36 @@
+.control-box {
+  &_container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 80%;
+    background-color: $component-background-color;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+
+    @include media-tablet {
+      flex-direction: row;
+    }
+  }
+
+  &_options-container {
+    display: flex;
+  }
+
+  &_options-button {
+    &__reload {
+      @include buttons;
+    }
+    &__celsius {
+      @include buttons;
+    }
+    &__fahrenheit {
+      @include buttons;
+    }
+    &__lang, &__search, &__micro {
+      @include buttons;
+    }
+  }
+}
+

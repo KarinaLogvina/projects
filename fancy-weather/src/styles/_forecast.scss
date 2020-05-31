@@ -1,0 +1,26 @@
+.forecast {
+  &_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include media-tablet {
+      flex-direction: row;
+    }
+  }
+
+  &_weather {
+    display: flex;
+    flex-direction: column;
+    @include font (#f0f8ff, 15px, 600);
+
+    @include media-tablet {
+      flex-direction: row;
+    }
+    
+    &__temp {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
