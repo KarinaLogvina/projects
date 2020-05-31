@@ -1,4 +1,4 @@
-import getImages from '../../api/getImages'
+import getImages from '../../api/getImages';
 import { setBg } from '../app/action';
 
 export const SetLanguage = 'SetLanguage';
@@ -12,11 +12,10 @@ export const setLanguage = (lang) => ({
   payload: { lang },
 });
 
-export const setUnit = (unit) => {
-  return ({
-    type: SetUnit,
-    payload: { unit },
-})};
+export const setUnit = (unit) => ({
+  type: SetUnit,
+  payload: { unit },
+});
 
 export const setCity = (city) => ({
   type: SetCity,
@@ -25,12 +24,10 @@ export const setCity = (city) => ({
 
 export const setSearchQuery = (query) => ({
   type: SetSearchQuery,
-  payload: { query }
-})
+  payload: { query },
+});
 
-export const fetchNewBg = () => {
-  return dispatch => getImages()
-    .then (
-      data => dispatch(setBg(data))
-  )
-}
+export const fetchNewBg = () => (dispatch) => getImages()
+  .then(
+    (data) => dispatch(setBg(data)),
+  );

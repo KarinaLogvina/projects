@@ -1,1 +1,3 @@
-export const getWeatherData = (store) => store.weather.data;
+const getWeatherData = (store) => store.weather;
+
+export default getWeatherData;

@@ -1,4 +1,8 @@
-export const getLang = (store) => store.controls.lang;
-export const getCity = (store) => store.controls.city;
-export const getUnit = (store) => store.controls.unit;
-export const getQuery = (store) => store.controls.query;
+const getLang = (store) => store.controls.lang;
+const getCity = (store) => store.controls.city;
+const getUnit = (store) => store.controls.unit;
+const getQuery = (store) => store.controls.query;
+
+export {
+  getCity, getLang, getQuery, getUnit,
+};

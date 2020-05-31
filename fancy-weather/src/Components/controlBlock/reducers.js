@@ -6,7 +6,7 @@ const initState = {
   lang: 'en',
   unit: 'C',
   city: 'Minsk',
-  query: 'Minsk'
+  query: 'Minsk',
 };
 
 const controls = (state = initState, action) => {
@@ -14,7 +14,7 @@ const controls = (state = initState, action) => {
     case SetLanguage: { return { ...state, lang: action.payload.lang }; }
     case SetCity: { return { ...state, city: action.payload.city }; }
     case SetUnit: { return { ...state, unit: action.payload.unit }; }
-    case SetSearchQuery: { return {...state, query: action.payload.query}; }
+    case SetSearchQuery: { return { ...state, query: action.payload.query }; }
     default: return state;
   }
 };

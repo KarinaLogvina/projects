@@ -1,51 +1,54 @@
+import getWeathers from '../../api/getWeathers';
+
 export const SetTemp = 'SetTemp';
 export const SetApparent = 'SetApparent';
 export const SetSpeed = 'SetSpeed';
 export const SetMoist = 'SetMoist';
 export const SetWeatherIcon = 'SetWeatherIcon';
 export const SetWeatherData = 'SetWeatherData';
-export const SetWeatherError ='SetWeatherError';
-import getWeathers from '../../api/getWeathers';
+export const SetWeatherError = 'SetWeatherError';
+export const SetLocalTime = 'SetLocalTime';
 
 export const setTemp = (temp) => ({
   type: SetTemp,
-  payload: { temp }
+  payload: { temp },
 });
 
 export const setApparent = (apparent) => ({
   type: SetApparent,
-  payload: { apparent }
+  payload: { apparent },
 });
 
 export const setSpeed = (speed) => ({
   type: SetSpeed,
-  payload: { speed }
+  payload: { speed },
 });
 
 export const setMoist = (moist) => ({
   type: SetMoist,
-  payload: { moist }
+  payload: { moist },
 });
 
 export const setWeatherIcon = (icon) => ({
   type: SetWeatherIcon,
-  payload: { icon }
+  payload: { icon },
 });
 
 export const setWeatherData = (data) => ({
   type: SetWeatherData,
-  payload: { data }
+  payload: { data },
 });
 
 export const setWeatherError = (error) => ({
   type: SetWeatherError,
-  payload: { error }
+  payload: { error },
 });
 
-export const loadWeather = (location) => {
-  return dispatch => getWeathers(location)
-    .then(
-      data => dispatch(setWeatherData(data)),
-      error => dispatch(setWeatherError(error))
-  )
-}
+export const loadWeather = (location) => async (dispatch) => {
+  const { data, error } = await getWeathers(location);
+  if (error) {
+    dispatch(setWeatherError(error));
+  } else {
+    dispatch(setWeatherData(data));
+  }
+};
