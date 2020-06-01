@@ -93,6 +93,7 @@ class ControlBox extends Component {
           </button>
         </div>
         <form
+          className="control-box_form"
           action=""
           onSubmit={event => {
             this.handleSubmit (event);
@@ -100,6 +101,7 @@ class ControlBox extends Component {
           }}
         >
           <input
+            className="control-box_search"
             type="text"
             placeholder="Search city"
             value={this.state.value}
@@ -117,6 +119,13 @@ class ControlBox extends Component {
               src="https://image.flaticon.com/icons/svg/875/875581.svg"
               alt="microphone"
               className="control-box_options-button__micro__icon"
+            />
+          </button>
+          <button type="button" className="control-box_options-button__play">
+            <img
+              src="https://image.flaticon.com/icons/svg/832/832642.svg"
+              alt="play"
+              className="control-box_options-button__play__icon"
             />
           </button>
         </form>

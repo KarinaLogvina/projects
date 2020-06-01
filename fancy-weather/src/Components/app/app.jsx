@@ -3,10 +3,11 @@ import ControlBox from '../controlBlock/controlBlock.jsx';
 import {connect} from 'react-redux';
 import Weather from '../weather/weathers.jsx';
 import Maps from '../map/map.jsx';
+import Error from '../error/errorHendle.jsx';
 import {bindActionCreators} from 'redux';
 import getBgUrl from './selectors.js';
 import getLocation from '../map/selector.js';
-import {askGeoLoc} from '../map/action';
+import {askGeoLoc, loadIP} from '../map/action';
 
 class App extends Component {
   constructor (props) {
@@ -15,6 +16,7 @@ class App extends Component {
 
   componentDidMount () {
     this.props.askGeoLoc ();
+    this.props.loadIP ();
   }
 
   render () {
@@ -25,6 +27,7 @@ class App extends Component {
       >
         <div className="wrapper">
           <ControlBox />
+          <Error />
           <div className="content-box">
             {this.props.location.latitude && <Weather />}
             <Maps />
@@ -46,6 +49,7 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators (
     {
       askGeoLoc: askGeoLoc,
+      loadIP: loadIP,
     },
     dispatch
   );

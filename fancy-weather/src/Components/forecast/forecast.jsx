@@ -13,9 +13,6 @@ class Forecast extends Component {
   }
 
   render () {
-    if (this.props.weatherData.error) {
-      return null;
-    }
     const {forecast} = this.props.weatherData.data;
     const {forecastday} = forecast;
     const days = forecastday.slice (0, 3);

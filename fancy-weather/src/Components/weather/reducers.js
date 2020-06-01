@@ -29,7 +29,7 @@ const initState = {
 const weather = (state = initState, action) => {
   switch (action.type) {
     case SetWeatherData: { return { ...state, data: action.payload.data, error: null }; }
-    case SetWeatherError: { return { ...initState, error: action.payload.error }; }
+    case SetWeatherError: { return { ...state, error: action.payload.error }; }
     case SetLocalTime: { return { ...state, ...action.payload }; }
     default: return state;
   }

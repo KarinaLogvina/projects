@@ -16,7 +16,7 @@ class Maps extends Component {
     return (
       <div className="map">
         <YMaps>
-          <div>
+          <div className="map_image">
             <Map
               width="100%"
               height="240px"

@@ -1,4 +1,4 @@
-import getLocation from '../../api/getLocate ';
+import getIPLocation from '../../api/getLocate ';
 import { positionToGeoLocData } from './helper';
 
 export const SetIp = 'SetIp';
@@ -6,9 +6,9 @@ export const SetIpError = 'SetIpError';
 export const SetGeoLoc = 'SetGeoLoc';
 export const GeoLocError = 'GeoLocError';
 
-export const setIp = (ip) => ({
+export const setIp = (ipData) => ({
   type: SetIp,
-  payload: { ip },
+  payload: { ipData },
 });
 
 export const setIpError = (error) => ({
@@ -27,12 +27,8 @@ export const geoLocError = (error) => ({
 });
 
 export const loadIP = () => async (dispatch) => {
-  const { ip, error } = await getLocation();
-  if (error) {
-    dispatch(setIpError(error));
-  } else {
-    dispatch(setIp(ip));
-  }
+  const data = await getIPLocation();
+  dispatch(setIp(data));
 };
 
 export const askGeoLoc = () => (dispatch) => {

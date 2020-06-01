@@ -48,9 +48,6 @@ class Weather extends Component {
   componentDidUpdate () {}
 
   render () {
-    if (this.props.weatherData.error) {
-      return <span style={{color: 'red'}}> Пишоу нахер</span>;
-    }
     const {location, current} = this.props.weatherData.data;
     const {name, country} = location;
     const {
@@ -67,9 +64,12 @@ class Weather extends Component {
     return (
       <div className="weather-container">
         <div className="weather_current-weather">
-
-          <h3 className="weather_current-weather__city">{name}, {country}</h3>
-          <div className="weather_current-weather__date">{this.state.time}</div>
+          <h3 className="weather_current-weather__city">
+            {name}, {country}
+          </h3>
+          <div className="weather_current-weather__date">
+            {this.state.time}
+          </div>
           <div className="weather_current-weather__impo">
             <div className="weather_current-weather__temp">
               {temp}°
@@ -87,7 +87,9 @@ class Weather extends Component {
           <div className="weather_current-weather__humidity">
             Humidity: {humidity}
           </div>
-          <div className="weather_current-weather__wind">Wind: {wind_kph}</div>
+          <div className="weather_current-weather__wind">
+            Wind: {wind_kph}
+          </div>
         </div>
         <div className="weather_forecast-weather">
           <Forecast />
