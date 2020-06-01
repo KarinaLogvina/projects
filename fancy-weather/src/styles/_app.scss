@@ -14,6 +14,8 @@ body {
       align-self: center;
       align-content: center;
       padding: 5% 0;
+      margin: 0 auto;
+      max-width: 1020px;
 
       .content-box {
         background-color: $component-background-color;

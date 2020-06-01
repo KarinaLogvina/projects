@@ -43,6 +43,7 @@
   border: 0;
   background-color: $component-background-color;
   align-items: center;
+  outline: 0;
   @include font(#fff, 15px, 600);
 
   &:hover{
