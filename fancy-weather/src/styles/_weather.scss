@@ -1,6 +1,40 @@
-.weather-container {
-  display: flex;
-  width: 80%;
-  flex-direction: column;
-  justify-content: space-between;
+.weather {
+  &-container {
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  &_current-weather {
+    padding: 20px;
+    &__city {
+      @include font($select-color, 30px, 900)
+    }
+
+    &__date {
+      @include font($select-color, 30px, 600)
+    }
+
+    &__state, &__summary, &__humidity, &__wind {
+      @include font($select-color, 20px, 600)
+    }
+
+    &__icon {
+      width: 150px;
+      height: 150px;
+    }
+
+    &__temp {
+      @include font($select-color, 100px, 600)
+    }
+
+    &__impo {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 150px;
+    }
+  }
 }

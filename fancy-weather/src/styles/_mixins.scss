@@ -4,13 +4,11 @@
   }
 }
 
-
 @mixin media-tablet {
   @media (min-width: #{$tablet}) {
       @content;
   }
 }
-
 
 @mixin media-desktop {
   @media (min-width: #{$desktop}) {
@@ -38,17 +36,18 @@
 }
 
 @mixin buttons {
-  height: 30px;
+  height: 50px;
+  width: 50px;
   margin: 5px;
   border-radius: 5px;
   border: 0;
   background-color: $component-background-color;
   align-items: center;
-  @include font(#f0f8ff, 15px, 600);
+  @include font(#fff, 15px, 600);
 
   &:hover{
-    background-color: $select-color;
-    color: red;
+    background-color: rgba(78, 72, 72, 0.301);
+    color: $select-color;
     cursor: pointer;
   }
 }
