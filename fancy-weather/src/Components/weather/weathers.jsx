@@ -5,8 +5,9 @@ import getWeatherData from './selectors';
 import {bindActionCreators} from 'redux';
 import {loadWeather} from './actions';
 import Forecast from '../forecast/forecast.jsx';
+import getLocation from '../map/selector';
 
-const TIME_CONSTANT = {
+export const TIME_CONSTANT = {
   month: 'long',
   day: 'numeric',
   hour: '2-digit',
@@ -18,16 +19,21 @@ class Weather extends Component {
   constructor (props) {
     super (props);
     this.state = {
-      time: new Date ().toLocaleTimeString ('en-US', {
+      time: new Date ().toLocaleTimeString ('ru-RU', {
         timeZone: this.props.weatherData.data.location.tz_id,
         weekday: 'short',
         ...TIME_CONSTANT,
       }),
+      location: {
+        latitude: '1111',
+        longitude: '1111',
+      },
+      query: 'Minsk',
     };
   }
 
   componentDidMount () {
-    this.props.loadWeather (this.props.query);
+    this.props.loadWeather (this.props.query, this.props.location);
     setInterval (() => {
       this.setState ({
         time: new Date ().toLocaleTimeString ('en-US', {
@@ -37,7 +43,6 @@ class Weather extends Component {
         }),
       }), 1000;
     });
-    // this.props.loadLocalTime (this.props.location.lat, this.props.location.lon);
   }
 
   componentDidUpdate () {}
@@ -62,17 +67,20 @@ class Weather extends Component {
     return (
       <div className="weather-container">
         <div className="weather_current-weather">
+
           <h3 className="weather_current-weather__city">{name}, {country}</h3>
           <div className="weather_current-weather__date">{this.state.time}</div>
-          <img
-            className="weather_current-weather__icon"
-            src={icon}
-            alt="weather icon"
-          />
-          <div className="weather_current-weather__state">{text}</div>
-          <div className="weather_current-weather__temp">
-            Temperature: {temp}°
+          <div className="weather_current-weather__impo">
+            <div className="weather_current-weather__temp">
+              {temp}°
+            </div>
+            <img
+              className="weather_current-weather__icon"
+              src={icon}
+              alt="weather icon"
+            />
           </div>
+          <div className="weather_current-weather__state">{text}</div>
           <div className="weather_current-weather__summary">
             Feels like: {feelslike_c}
           </div>
@@ -94,6 +102,7 @@ const mapStateToProps = state => {
     query: getQuery (state),
     weatherData: getWeatherData (state),
     unit: getUnit (state),
+    location: getLocation (state),
   };
 };
 

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {YMaps, Map, Placemark} from 'react-yandex-maps';
 import {connect} from 'react-redux';
 import getWeatherData from '../weather/selectors';
+import {latitudeToDMS, longitudeToDMS} from './helper';
 
 class Maps extends Component {
   constructor (props) {
@@ -19,12 +20,14 @@ class Maps extends Component {
             <Map
               width="100%"
               height="240px"
-              defaultState={{center: [lat, lon], zoom: 9}}
+              state={{center: [lat, lon], zoom: 9}}
             >
               <Placemark geometry={[lat, lon]} />
             </Map>
           </div>
         </YMaps>
+        <div>Latitude: {latitudeToDMS (lat)}</div>
+        <div>Longitude: {longitudeToDMS (lon)}</div>
       </div>
     );
   }

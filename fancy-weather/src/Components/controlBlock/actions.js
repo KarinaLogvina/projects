@@ -27,7 +27,13 @@ export const setSearchQuery = (query) => ({
   payload: { query },
 });
 
-export const fetchNewBg = () => (dispatch) => getImages()
-  .then(
-    (data) => dispatch(setBg(data)),
-  );
+export const fetchNewBg = (dayTime, season) => (dispatch) => {
+  getImages(dayTime, season)
+    .then(
+      (data) => {
+        const newImg = new Image();
+        newImg.src = data;
+        newImg.addEventListener('load', () => dispatch(setBg(data)), { once: true });
+      },
+    );
+};

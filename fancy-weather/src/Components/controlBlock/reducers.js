@@ -6,7 +6,7 @@ const initState = {
   lang: 'en',
   unit: 'C',
   city: 'Minsk',
-  query: 'Minsk',
+  query: '',
 };
 
 const controls = (state = initState, action) => {

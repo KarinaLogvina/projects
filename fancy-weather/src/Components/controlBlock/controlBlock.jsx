@@ -5,16 +5,7 @@ import {setUnit, fetchNewBg, setSearchQuery} from './actions';
 import {bindActionCreators} from 'redux';
 import getWeatherData from '../weather/selectors';
 import {loadWeather} from '../weather/actions';
-
-// const localTimeToDaytime = (localtime) => {
-//     const date = new Date(localtime * 1000);
-//     const hours = date.getHours();
-//     if ( hours === 23 || (hours >= 0 && hours <= 7) ) {
-//         return 'night';
-//     } else {
-//         return 'day'
-//     }
-// }
+import {getSeason, getDayTime} from './helper';
 class ControlBox extends Component {
   constructor (props) {
     super (props);
@@ -46,9 +37,16 @@ class ControlBox extends Component {
   }
 
   setBgURL () {
-    // const dayTime = localTimeToDaytime(this.props.weatherData.location.localtime_epoch);
-    // const season = localTimeToSeason(this.props.weatherData.location.localtime_epoch);
-    return () => this.props.fetchNewBg ();
+    const date = new Date ().toLocaleTimeString ('en-US', {
+      timeZone: this.props.weatherData.data.location.tz_id,
+      month: 'numeric',
+      hour: '2-digit',
+      hour12: false,
+    });
+    const [month, hour] = date.split (',');
+    const daytime = getDayTime (hour.trim ());
+    const season = getSeason (month.trim ());
+    return () => this.props.fetchNewBg (daytime, season);
   }
 
   render () {
@@ -59,7 +57,11 @@ class ControlBox extends Component {
             onClick={this.setBgURL ()}
             className="control-box_options-button__reload"
           >
-            Reload
+            <img
+              src="https://image.flaticon.com/icons/svg/875/875613.svg"
+              alt=""
+              className="control-box_options-button__reload__icon"
+            />
           </button>
           <select
             className="control-box_options-button__lang"
@@ -90,22 +92,33 @@ class ControlBox extends Component {
             F
           </button>
         </div>
-        <form action="" onSubmit={this.handleSubmit}>
-          <div className="search">
-            <input
-              type="text"
-              placeholder="Search city"
-              value={this.state.value}
-              onChange={this.handleChange}
+        <form
+          action=""
+          onSubmit={event => {
+            this.handleSubmit (event);
+            this.setBgURL () ();
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Search city"
+            value={this.state.value}
+            onChange={this.handleChange}
+          />
+          <button type="submit" className="control-box_options-button__search">
+            <img
+              src="https://image.flaticon.com/icons/svg/256/256444.svg"
+              alt=""
+              className="control-box_options-button__search__icon"
             />
-            <button
-              type="submit"
-              className="control-box_options-button__search"
-            >
-              Search
-            </button>
-            <button className="control-box_options-button__micro">Micro</button>
-          </div>
+          </button>
+          <button type="button" className="control-box_options-button__micro">
+            <img
+              src="https://image.flaticon.com/icons/svg/875/875581.svg"
+              alt="microphone"
+              className="control-box_options-button__micro__icon"
+            />
+          </button>
         </form>
       </div>
     );

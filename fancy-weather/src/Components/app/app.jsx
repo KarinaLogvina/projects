@@ -3,11 +3,18 @@ import ControlBox from '../controlBlock/controlBlock.jsx';
 import {connect} from 'react-redux';
 import Weather from '../weather/weathers.jsx';
 import Maps from '../map/map.jsx';
+import {bindActionCreators} from 'redux';
 import getBgUrl from './selectors.js';
+import getLocation from '../map/selector.js';
+import {askGeoLoc} from '../map/action';
 
 class App extends Component {
   constructor (props) {
     super (props);
+  }
+
+  componentDidMount () {
+    this.props.askGeoLoc ();
   }
 
   render () {
@@ -16,10 +23,12 @@ class App extends Component {
         className="app"
         style={{backgroundImage: `url(${this.props.bgURL})`}}
       >
-        <ControlBox />
-        <div className="content-box">
-          <Weather />
-          <Maps />
+        <div className="wrapper">
+          <ControlBox />
+          <div className="content-box">
+            {this.props.location.latitude && <Weather />}
+            <Maps />
+          </div>
         </div>
       </div>
     );
@@ -29,7 +38,17 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     bgURL: getBgUrl (state),
+    location: getLocation (state),
   };
 };
 
-export default connect (mapStateToProps) (App);
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators (
+    {
+      askGeoLoc: askGeoLoc,
+    },
+    dispatch
+  );
+};
+
+export default connect (mapStateToProps, mapDispatchToProps) (App);

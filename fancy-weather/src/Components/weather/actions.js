@@ -44,8 +44,8 @@ export const setWeatherError = (error) => ({
   payload: { error },
 });
 
-export const loadWeather = (location) => async (dispatch) => {
-  const { data, error } = await getWeathers(location);
+export const loadWeather = (query, location) => async (dispatch) => {
+  const { data, error } = await getWeathers(query, location);
   if (error) {
     dispatch(setWeatherError(error));
   } else {
