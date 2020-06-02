@@ -1,21 +1,32 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getLang} from './selectors';
-import {setUnit, fetchNewBg, setSearchQuery} from './actions';
+import {setUnit, fetchNewBg, setSearchQuery, setLanguage} from './actions';
 import {bindActionCreators} from 'redux';
 import getWeatherData from '../weather/selectors';
 import {loadWeather} from '../weather/actions';
 import {getSeason, getDayTime} from './helper';
+import getLocation from '../map/selector';
+import translate from '../../translate/translate';
+import Speech from '../speech/speech.jsx';
 class ControlBox extends Component {
   constructor (props) {
     super (props);
-    this.state = {value: ''};
+    this.state = {
+      value: '',
+    };
     this.handleChange = this.handleChange.bind (this);
     this.handleSubmit = this.handleSubmit.bind (this);
+    this.handleLangChange = this.handleLangChange.bind (this);
   }
 
   handleChange (event) {
     this.setState ({value: event.target.value});
+  }
+
+  handleLangChange (event) {
+    this.props.loadWeather (undefined, this.props.location, event.target.value);
+    this.setLanguage (event.target.value);
   }
 
   handleSubmit (event) {
@@ -25,15 +36,15 @@ class ControlBox extends Component {
   }
 
   setSearchQuery (query) {
-    this.props.loadWeather (query);
+    this.props.loadWeather (query, undefined, this.props.lang);
   }
 
   setLanguage (lang) {
-    return () => this.props.setLanguage (lang);
+    this.props.setLanguage (lang);
   }
 
   setUnit (unit) {
-    return () => this.props.setUnit (unit);
+    this.props.setUnit (unit);
   }
 
   setBgURL () {
@@ -50,6 +61,8 @@ class ControlBox extends Component {
   }
 
   render () {
+    const translated = translate[this.props.lang];
+
     return (
       <div className="control-box_container">
         <div className="control-box_options-container">
@@ -68,25 +81,26 @@ class ControlBox extends Component {
             name="language"
             id="lang"
             value={this.props.lang}
+            onChange={this.handleLangChange}
           >
-            <option value="en" onClick={this.setLanguage ('en')}>
+            <option value="en">
               EN
             </option>
-            <option value="ru" onClick={this.setLanguage ('ru')}>
+            <option value="ru">
               RU
             </option>
-            <option value="be" onClick={this.setLanguage ('be')}>
+            <option value="be">
               BE
             </option>
           </select>
           <button
-            onClick={this.setUnit ('C')}
+            onClick={() => this.setUnit ('C')}
             className="control-box_options-button__celsius"
           >
             °C
           </button>
           <button
-            onClick={this.setUnit ('F')}
+            onClick={() => this.setUnit ('F')}
             className="control-box_options-button__fahrenheit"
           >
             F
@@ -103,7 +117,7 @@ class ControlBox extends Component {
           <input
             className="control-box_search"
             type="text"
-            placeholder="Search city"
+            placeholder={`${translated['search']} ${translated['city']}`}
             value={this.state.value}
             onChange={this.handleChange}
           />
@@ -121,13 +135,7 @@ class ControlBox extends Component {
               className="control-box_options-button__micro__icon"
             />
           </button>
-          <button type="button" className="control-box_options-button__play">
-            <img
-              src="https://image.flaticon.com/icons/svg/832/832642.svg"
-              alt="play"
-              className="control-box_options-button__play__icon"
-            />
-          </button>
+          <Speech />
         </form>
       </div>
     );
@@ -138,6 +146,8 @@ const mapStateToProps = state => {
   return {
     getLang: getLang (state),
     weatherData: getWeatherData (state),
+    location: getLocation (state),
+    lang: getLang (state),
   };
 };
 
@@ -148,6 +158,7 @@ const mapDispatchToProps = dispatch => {
       fetchNewBg: fetchNewBg,
       setSearchQuery: setSearchQuery,
       loadWeather: loadWeather,
+      setLanguage: setLanguage,
     },
     dispatch
   );

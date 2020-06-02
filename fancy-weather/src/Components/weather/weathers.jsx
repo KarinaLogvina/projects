@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {getQuery, getUnit} from '../controlBlock/selectors';
+import {getQuery, getUnit, getLang} from '../controlBlock/selectors';
 import {connect} from 'react-redux';
 import getWeatherData from './selectors';
 import {bindActionCreators} from 'redux';
 import {loadWeather} from './actions';
 import Forecast from '../forecast/forecast.jsx';
 import getLocation from '../map/selector';
+import translate from '../../translate/translate';
 
 export const TIME_CONSTANT = {
   month: 'long',
@@ -19,7 +20,7 @@ class Weather extends Component {
   constructor (props) {
     super (props);
     this.state = {
-      time: new Date ().toLocaleTimeString ('ru-RU', {
+      time: new Date ().toLocaleTimeString (`${this.props.lang}-RU`, {
         timeZone: this.props.weatherData.data.location.tz_id,
         weekday: 'short',
         ...TIME_CONSTANT,
@@ -29,14 +30,20 @@ class Weather extends Component {
         longitude: '1111',
       },
       query: 'Minsk',
+      value: '',
+      lang: 'en',
     };
   }
 
   componentDidMount () {
-    this.props.loadWeather (this.props.query, this.props.location);
+    this.props.loadWeather (
+      this.props.query,
+      this.props.location,
+      this.props.lang
+    );
     setInterval (() => {
       this.setState ({
-        time: new Date ().toLocaleTimeString ('en-US', {
+        time: new Date ().toLocaleTimeString (`${this.props.lang}-RU`, {
           timeZone: this.props.weatherData.data.location.tz_id,
           weekday: 'short',
           ...TIME_CONSTANT,
@@ -56,10 +63,15 @@ class Weather extends Component {
       humidity,
       wind_kph,
       feelslike_c,
+      feelslike_f,
       condition,
     } = current;
     const {icon, text} = condition;
-    const temp = this.props.unit === 'F' ? temp_f : temp_c;
+    const temp = this.props.unit === 'F' ? temp_f + '°F' : temp_c + '°C';
+    const feelslike = this.props.unit === 'F'
+      ? feelslike_f + '°F'
+      : feelslike_c + '°C';
+    const translated = translate[this.props.lang];
 
     return (
       <div className="weather-container">
@@ -72,7 +84,7 @@ class Weather extends Component {
           </div>
           <div className="weather_current-weather__impo">
             <div className="weather_current-weather__temp">
-              {temp}°
+              {temp}
             </div>
             <img
               className="weather_current-weather__icon"
@@ -82,13 +94,13 @@ class Weather extends Component {
           </div>
           <div className="weather_current-weather__state">{text}</div>
           <div className="weather_current-weather__summary">
-            Feels like: {feelslike_c}
+            {translated['feels_like']} {feelslike}
           </div>
           <div className="weather_current-weather__humidity">
-            Humidity: {humidity}
+            {translated['humidity']} {humidity}%
           </div>
           <div className="weather_current-weather__wind">
-            Wind: {wind_kph}
+            {translated['wind']} {wind_kph} {translated['kph']}
           </div>
         </div>
         <div className="weather_forecast-weather">
@@ -105,6 +117,7 @@ const mapStateToProps = state => {
     weatherData: getWeatherData (state),
     unit: getUnit (state),
     location: getLocation (state),
+    lang: getLang (state),
   };
 };
 
