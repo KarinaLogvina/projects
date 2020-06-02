@@ -11,19 +11,13 @@ class Maps extends Component {
     super (props);
     this.state = {
       value: '',
-      lang: 'en',
     };
-  }
-
-  componentDidMount () {
-    const currentLang = localStorage.getItem ('lang') || 'en';
-    this.setState ({lang: currentLang});
   }
 
   render () {
     const {location} = this.props.weatherData.data;
     const {lat, lon} = location;
-    const translated = translate[this.state.lang];
+    const translated = translate[this.props.lang];
 
     return (
       <div className="map">

@@ -1,46 +1,46 @@
 import getWeathers from '../../api/getWeathers';
 
-export const SetTemp = 'SetTemp';
-export const SetApparent = 'SetApparent';
-export const SetSpeed = 'SetSpeed';
-export const SetMoist = 'SetMoist';
-export const SetWeatherIcon = 'SetWeatherIcon';
-export const SetWeatherData = 'SetWeatherData';
-export const SetWeatherError = 'SetWeatherError';
-export const SetLocalTime = 'SetLocalTime';
+export const SET_TEMP = 'SetTemp';
+export const SET_APPARENT = 'SetApparent';
+export const SET_SPEED = 'SetSpeed';
+export const SET_MOIST = 'SetMoist';
+export const SET_WEATHER_ICON = 'SetWeatherIcon';
+export const SET_WEATHER_DATA = 'SetWeatherData';
+export const SET_WEATHER_ERROR = 'SetWeatherError';
+export const SET_LOCAL_TIME = 'SetLocalTime';
 
 export const setTemp = (temp) => ({
-  type: SetTemp,
+  type: SET_TEMP,
   payload: { temp },
 });
 
 export const setApparent = (apparent) => ({
-  type: SetApparent,
+  type: SET_APPARENT,
   payload: { apparent },
 });
 
 export const setSpeed = (speed) => ({
-  type: SetSpeed,
+  type: SET_SPEED,
   payload: { speed },
 });
 
 export const setMoist = (moist) => ({
-  type: SetMoist,
+  type: SET_MOIST,
   payload: { moist },
 });
 
 export const setWeatherIcon = (icon) => ({
-  type: SetWeatherIcon,
+  type: SET_WEATHER_ICON,
   payload: { icon },
 });
 
 export const setWeatherData = (data) => ({
-  type: SetWeatherData,
+  type: SET_WEATHER_DATA,
   payload: { data },
 });
 
 export const setWeatherError = (error) => ({
-  type: SetWeatherError,
+  type: SET_WEATHER_ERROR,
   payload: { error },
 });
 

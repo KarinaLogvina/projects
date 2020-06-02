@@ -35,6 +35,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
+    "react-speech-kit": "github:shevv920/react-speech-kit#build",
     "react-yandex-maps": "^4.4.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",

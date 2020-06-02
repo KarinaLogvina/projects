@@ -24,4 +24,9 @@ const getDayTime = (hour) => {
   return 'evening';
 };
 
-export { getDayTime, getSeason };
+const select = (unit, expectedUnit) => {
+  if (unit === expectedUnit) return 'select';
+  return '';
+};
+
+export { getDayTime, getSeason, select };

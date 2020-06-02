@@ -1,4 +1,4 @@
-import { SetGeoLoc, GeoLocError, SetIp } from './action';
+import { SET_GEO_LOCATION, GEO_LOCATION_ERROR, SET_IP } from './action';
 
 const initState = {
   data: {
@@ -13,9 +13,9 @@ const initState = {
 
 const location = (state = initState, action) => {
   switch (action.type) {
-    case SetGeoLoc: { return { ...state, data: action.payload.data }; }
-    case GeoLocError: { return { ...state, data: action.payload.error }; }
-    case SetIp: {
+    case SET_GEO_LOCATION: { return { ...state, data: action.payload.data }; }
+    case GEO_LOCATION_ERROR: { return { ...state, data: action.payload.error }; }
+    case SET_IP: {
       const { loc } = action.payload.ipData;
       const [latitude, longitude] = loc.split(',');
       return { ...state, ipData: { latitude, longitude } }; }

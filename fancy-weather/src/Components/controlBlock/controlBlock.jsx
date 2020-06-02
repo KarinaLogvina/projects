@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getLang} from './selectors';
+import {getLang, getUnit} from './selectors';
 import {setUnit, fetchNewBg, setSearchQuery, setLanguage} from './actions';
 import {bindActionCreators} from 'redux';
 import getWeatherData from '../weather/selectors';
 import {loadWeather} from '../weather/actions';
-import {getSeason, getDayTime} from './helper';
+import {getSeason, getDayTime, select} from './helper';
 import getLocation from '../map/selector';
 import translate from '../../translate/translate';
 import Speech from '../speech/speech.jsx';
@@ -15,6 +15,7 @@ class ControlBox extends Component {
     this.state = {
       value: '',
     };
+    this.setUnit = this.setUnit.bind (this);
     this.handleChange = this.handleChange.bind (this);
     this.handleSubmit = this.handleSubmit.bind (this);
     this.handleLangChange = this.handleLangChange.bind (this);
@@ -95,13 +96,13 @@ class ControlBox extends Component {
           </select>
           <button
             onClick={() => this.setUnit ('C')}
-            className="control-box_options-button__celsius"
+            className={`control-box_options-button__celsius ${select (this.props.unit, 'C')}`}
           >
             °C
           </button>
           <button
             onClick={() => this.setUnit ('F')}
-            className="control-box_options-button__fahrenheit"
+            className={`control-box_options-button__fahrenheit ${select (this.props.unit, 'F')}`}
           >
             F
           </button>
@@ -148,6 +149,7 @@ const mapStateToProps = state => {
     weatherData: getWeatherData (state),
     location: getLocation (state),
     lang: getLang (state),
+    unit: getUnit (state),
   };
 };
 

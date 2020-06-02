@@ -1,28 +1,28 @@
 import getIPLocation from '../../api/getLocate ';
 import { positionToGeoLocData } from './helper';
 
-export const SetIp = 'SetIp';
-export const SetIpError = 'SetIpError';
-export const SetGeoLoc = 'SetGeoLoc';
-export const GeoLocError = 'GeoLocError';
+export const SET_IP = 'SetIp';
+export const SET_TP_ERROR = 'SetIpError';
+export const SET_GEO_LOCATION = 'SetGeoLoc';
+export const GEO_LOCATION_ERROR = 'GeoLocError';
 
 export const setIp = (ipData) => ({
-  type: SetIp,
+  type: SET_IP,
   payload: { ipData },
 });
 
 export const setIpError = (error) => ({
-  type: SetIpError,
+  type: SET_TP_ERROR,
   payload: { error },
 });
 
 export const setGeoLoc = (data) => ({
-  type: SetGeoLoc,
+  type: SET_GEO_LOCATION,
   payload: { data },
 });
 
 export const geoLocError = (error) => ({
-  type: GeoLocError,
+  type: GEO_LOCATION_ERROR,
   payload: { error },
 });
 

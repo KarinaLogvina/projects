@@ -1,4 +1,4 @@
-import { SetWeatherData, SetLocalTime, SetWeatherError } from './actions';
+import { SET_WEATHER_DATA, SET_LOCAL_TIME, SET_WEATHER_ERROR } from './actions';
 
 const initState = {
   data: {
@@ -28,9 +28,9 @@ const initState = {
 
 const weather = (state = initState, action) => {
   switch (action.type) {
-    case SetWeatherData: { return { ...state, data: action.payload.data, error: null }; }
-    case SetWeatherError: { return { ...state, error: action.payload.error }; }
-    case SetLocalTime: { return { ...state, ...action.payload }; }
+    case SET_WEATHER_DATA: { return { ...state, data: action.payload.data, error: null }; }
+    case SET_WEATHER_ERROR: { return { ...state, error: action.payload.error }; }
+    case SET_LOCAL_TIME: { return { ...state, ...action.payload }; }
     default: return state;
   }
 };
