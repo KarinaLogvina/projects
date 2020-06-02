@@ -1,6 +1,6 @@
 import { SET_WEATHER_DATA, SET_LOCAL_TIME, SET_WEATHER_ERROR } from './actions';
 
-const initState = {
+export const initState = {
   data: {
     location:
       {

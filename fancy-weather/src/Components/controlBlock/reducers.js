@@ -2,7 +2,7 @@ import {
   SET_LANGUAGE, SET_CITY, SET_UNIT, SET_SEARCH_QUERY,
 } from './actions';
 
-const initState = {
+export const initState = {
   lang: localStorage.getItem('lang') || 'en',
   unit: localStorage.getItem('unit') || 'C',
   city: 'Minsk',

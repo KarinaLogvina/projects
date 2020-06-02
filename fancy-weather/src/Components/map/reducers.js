@@ -1,6 +1,6 @@
 import { SET_GEO_LOCATION, GEO_LOCATION_ERROR, SET_IP } from './action';
 
-const initState = {
+export const initState = {
   data: {
     latitude: '',
     longitude: '',

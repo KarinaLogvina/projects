@@ -23,4 +23,6 @@ const positionToGeoLocData = (position) => ({
   longitude: position.coords.longitude,
 });
 
-export { latitudeToDMS, longitudeToDMS, positionToGeoLocData };
+export {
+  latitudeToDMS, longitudeToDMS, positionToGeoLocData, coordToDMS,
+};
