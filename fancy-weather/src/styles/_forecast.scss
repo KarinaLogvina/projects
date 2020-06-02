@@ -20,10 +20,19 @@
     @include media-tablet {
       flex-direction: row;
     }
+
+    &__icon {
+      max-width: 100px;
+      @include animation;
+    }
     
     &__temp {
       display: flex;
       align-items: center;
     }
+  }
+
+  &_weekday {
+    text-transform: capitalize;
   }
 }

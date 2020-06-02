@@ -9,25 +9,41 @@
   
   &_current-weather {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
     &__city {
-      @include font($select-color, 30px, 900)
+      @include font($select-color, 1.5rem, 900);
+
+      @include media-tablet {
+        font-size: 2.5rem;
+      }
     }
 
     &__date {
-      @include font($select-color, 30px, 600)
+      @include font($select-color, 1.2rem, 600);
+
+      @include media-tablet {
+        font-size: 2.5rem;
+        font-weight: 900;
+      }
     }
 
     &__state, &__summary, &__humidity, &__wind {
-      @include font($select-color, 20px, 600)
+      @include font($select-color, 1.3rem, 600)
     }
 
     &__icon {
       width: 150px;
       height: 150px;
+      @include animation;
     }
 
     &__temp {
-      @include font($select-color, 90px, 600)
+      @include font($select-color, 2.2rem, 600);
+
+      @include media-tablet {
+        font-size: 4rem;
+      }
     }
 
     &__impo {
@@ -38,3 +54,5 @@
     }
   }
 }
+
+
