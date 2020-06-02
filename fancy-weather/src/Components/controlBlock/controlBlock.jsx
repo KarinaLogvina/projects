@@ -129,13 +129,6 @@ class ControlBox extends Component {
               className="control-box_options-button__search__icon"
             />
           </button>
-          <button type="button" className="control-box_options-button__micro">
-            <img
-              src="https://image.flaticon.com/icons/svg/875/875581.svg"
-              alt="microphone"
-              className="control-box_options-button__micro__icon"
-            />
-          </button>
           <Speech />
         </form>
       </div>

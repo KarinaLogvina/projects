@@ -68,6 +68,11 @@
         height: 30px;
       }
     }
+  }
+
+  &_speak-button {
+    display: flex;
+    flex-direction: row;
 
     &__micro, &__play {
       @include buttons;

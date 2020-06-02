@@ -6,6 +6,8 @@ export const SET_UNIT = 'SetUnit';
 export const SET_CITY = 'SetCity';
 export const SET_SEARCH_QUERY = 'SetSearchQuery';
 export const FETCH_NEW_BACKGROUND = 'FetchNewBg';
+export const VOLUME_UP = 'VolumeUp';
+export const VOLUME_DOWN = 'VolumeDown';
 
 export const setLanguage = (lang) => ({
   type: SET_LANGUAGE,
@@ -26,6 +28,9 @@ export const setSearchQuery = (query) => ({
   type: SET_SEARCH_QUERY,
   payload: { query },
 });
+
+export const volumeUp = () => ({ type: VOLUME_UP });
+export const volumeDown = () => ({ type: VOLUME_DOWN });
 
 export const fetchNewBg = (dayTime, season) => (dispatch) => {
   getImages(dayTime, season)
